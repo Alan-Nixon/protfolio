@@ -7,8 +7,9 @@ import { IProject } from "@/app/interfaces_types/interfaces_types";
 
 export default function ProjectDetail({ params }: { params: { id: string } }) {
   let { project } = useProject();
+  
   const data = project.find((p: IProject) => p._id === "123");
-  console.log(project, data);
+  console.log(project, data,params);
   if (!data) {
     notFound();
   }
