@@ -8,12 +8,12 @@ export interface IUser {
     name: string
     Email: string
     profileImage: string,
-    githubLink:string,
-    linkedInLink:string
-    instaLink:string
-    stackLink:string
-    gitlabLink:string,
-    npmLink:string
+    githubLink: string,
+    linkedInLink: string
+    instaLink: string
+    stackLink: string
+    gitlabLink: string,
+    npmLink: string
 }
 
 export interface IProject {
@@ -23,6 +23,9 @@ export interface IProject {
     description: string;
     link: string;
     githubLink: string;
+    images: string[]
+    videoUrl:string
+    technologies:string[]
 }
 
 export interface ISkill {

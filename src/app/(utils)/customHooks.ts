@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { IUser } from "../interfaces_types/interfaces_types";
+import { IProject, IUser } from "../interfaces_types/interfaces_types";
 
 export const useUser = () => {
   const [user, setUser] = useState<IUser>({
-    bio: "", githubLink: "",gitlabLink:"",
+    bio: "", githubLink: "", gitlabLink: "",
     description: "", linkedInLink: "",
-    instaLink: "", Email: "",stackLink:"",
-    name: "", profileImage: "",npmLink:""
+    instaLink: "", Email: "", stackLink: "",
+    name: "", profileImage: "", npmLink: ""
   });
 
   useEffect(() => {
@@ -17,9 +17,9 @@ export const useUser = () => {
         githubLink: "https://github.com/Alan-Nixon",
         linkedInLink: "https://www.linkedin.com/in/alannixon2520",
         instaLink: "https://www.instagram.com/_alan_nixon/",
-        stackLink:"https://stackoverflow.com/users/22199465/alan-nixon",
-        gitlabLink:"https://gitlab.com/alan-nixon",
-        npmLink:"https://www.npmjs.com/~alan-nixon",
+        stackLink: "https://stackoverflow.com/users/22199465/alan-nixon",
+        gitlabLink: "https://gitlab.com/alan-nixon",
+        npmLink: "https://www.npmjs.com/~alan-nixon",
         profileImage: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729070240/protfolio/WhatsApp_Image_2024-10-16_at_2.34.28_PM_scrhai.jpg",
         bio: "A passionate full-stack developer crafting digital experiences",
         description: `Welcome to my portfolio! I'm a dedicated full-stack developer with a
@@ -30,10 +30,38 @@ export const useUser = () => {
                 learn and grow. I'm excited to share my work with you and potentially
                 collaborate on future projects!`,
       };
-      
+
       setUser(user);
     })();
   }, []);
 
   return { user, setUser };
 };
+
+const data: IProject[] = [...Array(6).fill({
+  _id: "123",
+  githubLink: "https://github.com/Alan-Nixon/Av_Shopping",
+  link: "https://avproductions.site/",
+  projectImage: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729076570/protfolio/Screenshot_from_2024-10-16_16-08-39_mzn3ar.png",
+  Title: "Av shops",
+  description: "The project is an E-Commerce you know",
+  images: [
+    "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729099260/protfolio/4c412c90-a30e-419a-997c-1ec08036b0a4.png",
+    "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729099374/protfolio/f001ca06-39ca-4bb2-befa-76c6a544af58.png",
+    "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729099481/protfolio/e9dee99d-9068-477a-87aa-daa7c144a14d.png"
+  ],
+  technologies: [
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "Redux",
+    "Stripe API",
+  ], videoUrl: ""
+})]
+
+export const useProject = () => {
+  const [project, setProject] = useState<IProject[]>(data)
+  // setProject(data)
+  return { project, setProject }
+} 

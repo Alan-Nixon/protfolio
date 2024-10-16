@@ -1,64 +1,15 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { IProject } from "../interfaces_types/interfaces_types";
 import { useEffect, useState } from "react";
+import { useProject } from "../(utils)/customHooks";
 
 export default function Projects() {
   const [projects, setProjects] = useState<IProject[]>([]);
+  const { project } = useProject();
+
   useEffect(() => {
-    const data: IProject[] = [
-      {
-        _id: Math.random() * 1000000 + "",
-        githubLink: "",
-        link: "",
-        projectImage: "",
-        Title: "E-commerce Platform",
-        description: "A full-stack e-commerce solution with React and Node.js.",
-      },
-      {
-        _id: Math.random() * 1000000 + "",
-        githubLink: "",
-        link: "",
-        projectImage: "",
-        Title: "Task Management App",
-        description: "A productivity app built with Next.js and MongoDB.",
-      },
-      {
-        _id: Math.random() * 1000000 + "",
-        githubLink: "",
-        link: "",
-        projectImage: "",
-        Title: "Weather Dashboard",
-        description: "A real-time weather app using React and a weather API.",
-      },
-      {
-        _id: Math.random() * 1000000 + "",
-        githubLink: "",
-        link: "",
-        projectImage: "",
-        Title: "Social Media Analytics Tool",
-        description: "Data visualization for social media metrics using D3.js.",
-      },
-      {
-        _id: Math.random() * 1000000 + "",
-        githubLink: "",
-        link: "",
-        projectImage: "",
-        Title: "Fitness Tracker",
-        description:
-          "A mobile app for tracking workouts and nutrition, built with React Native.",
-      },
-      {
-        _id: Math.random() * 1000000 + "",
-        githubLink: "",
-        link: "",
-        projectImage: "",
-        Title: "Code Snippet Manager",
-        description:
-          "A tool for developers to store and share code snippets, using Vue.js and Firebase.",
-      },
-    ];
-    setProjects(data);
+    setProjects(project);
   }, []);
 
   return (
@@ -71,7 +22,7 @@ export default function Projects() {
             className="bg-white rounded-lg overflow-hidden shadow-lg border border-gray-200"
           >
             <img
-              src={`/placeholder.svg?height=200&width=400&text=Project+${project._id}`}
+              src={project.projectImage}
               alt={project.Title}
               className="w-full h-48 object-cover"
             />
