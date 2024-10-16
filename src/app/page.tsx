@@ -34,13 +34,15 @@ function ProfileSection() {
     <section className="py-20 text-center">
       <div className="mb-8">
         <div className="w-56 h-56 mx-auto rounded-full overflow-hidden">
-          <Image
-            src={user.profileImage}
-            alt="Your Name"
-            width={250}
-            height={192}
-            className="object-cover"
-          />
+          {user.profileImage && (
+            <Image
+              src={user.profileImage}
+              alt="Your Name"
+              width={250}
+              height={192}
+              className="object-cover"
+            />
+          )}
         </div>
       </div>
       <h1 className="text-5xl font-bold mb-4">
@@ -66,4 +68,4 @@ function ProfileSection() {
       </div>
     </section>
   );
-} 
+}
