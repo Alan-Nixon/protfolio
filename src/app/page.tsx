@@ -36,7 +36,10 @@ function ProfileSection() {
         <div className="w-56 h-56 mx-auto rounded-full overflow-hidden">
           {user.profileImage && (
             <Image
-              src={user.profileImage}
+              src={
+                "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729070240/WhatsApp_Image_2024-10-16_at_2.34.28_PM_scrhai.jpg" +
+                  "" || user.profileImage
+              }
               alt="Your Name"
               width={250}
               height={192}
