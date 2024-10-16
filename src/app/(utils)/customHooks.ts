@@ -20,7 +20,7 @@ export const useUser = () => {
         stackLink:"https://stackoverflow.com/users/22199465/alan-nixon",
         gitlabLink:"https://gitlab.com/alan-nixon",
         npmLink:"https://www.npmjs.com/~alan-nixon",
-        profileImage: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729070240/WhatsApp_Image_2024-10-16_at_2.34.28_PM_scrhai.jpg",
+        profileImage: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729070240/protfolio/WhatsApp_Image_2024-10-16_at_2.34.28_PM_scrhai.jpg",
         bio: "A passionate full-stack developer crafting digital experiences",
         description: `Welcome to my portfolio! I'm a dedicated full-stack developer with a
                 passion for creating innovative and efficient solutions. With years of
