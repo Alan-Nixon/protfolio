@@ -2,40 +2,48 @@
 
 import { Github } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { IOpenSource } from "../interfaces_types/interfaces_types";
 
 export default function OpenSourceContribution() {
-  const openSourceProjects = [
-    {
-      title: "React Component Library",
-      description:
-        "Contributed to an open-source React component library, adding new components and improving documentation.",
-    },
-    {
-      title: "JavaScript Framework Plugin",
-      description:
-        "Developed a plugin for a popular JavaScript framework, enhancing its functionality and performance.",
-    },
-    {
-      title: "Node.js Utility",
-      description:
-        "Fixed bugs and improved documentation for a widely-used Node.js utility, increasing its reliability and ease of use.",
-    },
-    {
-      title: "Python Package",
-      description:
-        "Created a new feature for a widely-used Python package, expanding its capabilities and user base.",
-    },
-    {
-      title: "Open Source CMS",
-      description:
-        "Contributed to the development of a popular open-source Content Management System, focusing on security enhancements.",
-    },
-    {
-      title: "Machine Learning Library",
-      description:
-        "Implemented new algorithms and optimized existing ones in a machine learning library, improving its performance and accuracy.",
-    },
-  ];
+  const [openSourceProjects, setOpenSourceProjects] = useState<IOpenSource[]>(
+    []
+  );
+  useEffect(() => {
+    const data = [
+      {
+        title: "React Component Library",
+        description:
+          "Contributed to an open-source React component library, adding new components and improving documentation.",
+      },
+      {
+        title: "JavaScript Framework Plugin",
+        description:
+          "Developed a plugin for a popular JavaScript framework, enhancing its functionality and performance.",
+      },
+      {
+        title: "Node.js Utility",
+        description:
+          "Fixed bugs and improved documentation for a widely-used Node.js utility, increasing its reliability and ease of use.",
+      },
+      {
+        title: "Python Package",
+        description:
+          "Created a new feature for a widely-used Python package, expanding its capabilities and user base.",
+      },
+      {
+        title: "Open Source CMS",
+        description:
+          "Contributed to the development of a popular open-source Content Management System, focusing on security enhancements.",
+      },
+      {
+        title: "Machine Learning Library",
+        description:
+          "Implemented new algorithms and optimized existing ones in a machine learning library, improving its performance and accuracy.",
+      },
+    ];
+    setOpenSourceProjects(data);
+  }, []);
 
   return (
     <section className="py-20">

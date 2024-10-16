@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { Github, Linkedin, Instagram, FileCode, GitBranch } from 'lucide-react'
 
 export default function Contact() {

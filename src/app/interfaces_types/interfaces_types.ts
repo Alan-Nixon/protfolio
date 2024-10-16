@@ -25,3 +25,26 @@ export interface ISkill {
     icon: string;
     skill: string;
 }
+
+
+export interface IExperience {
+    _id: string
+    title: string;
+    companyName: string;
+    roles: string[];
+    achievements: string[];
+}
+
+
+
+export interface IOpenSource {
+    title: string;
+    description: string;
+}
+
+export interface IEducation {
+    degree: string;
+    institution: string;
+    graduationYear: string;
+    details: string[];
+}

@@ -1,18 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function IntegratedApi() {
+  const [api, setApi] = useState<string[]>([]);
+  useEffect(() => {
+    setApi(["Stripe", "Twilio", "Google Maps", "SendGrid", "AWS S3", "OpenAI"]);
+  }, []);
   return (
     <section className="py-20">
       <h2 className="text-3xl font-bold mb-8 text-center">Integrated APIs</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          "Stripe",
-          "Twilio",
-          "Google Maps",
-          "SendGrid",
-          "AWS S3",
-          "OpenAI",
-        ].map((api) => (
+        {api.map((api) => (
           <div
             key={api}
             className="bg-white p-6 rounded-lg shadow-md border border-gray-200"

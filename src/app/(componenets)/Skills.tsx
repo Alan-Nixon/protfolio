@@ -3,10 +3,10 @@ import { Code, Database, Server } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { ISkill } from "../interfaces_types/interfaces_types";
 
-const iconLibrary:any = {
-  "Code": <Code size={48} className="mx-auto mb-4 text-emerald-700"  />,
-  "Database":<Database size={48} className="mx-auto mb-4 text-emerald-700"  />,
-  "Server":<Server size={48} className="mx-auto mb-4 text-emerald-700"  />,
+const iconLibrary = {
+  Code: <Code size={48} className="mx-auto mb-4 text-emerald-700" />,
+  Database: <Database size={48} className="mx-auto mb-4 text-emerald-700" />,
+  Server: <Server size={48} className="mx-auto mb-4 text-emerald-700" />,
 };
 
 export default function Skills() {
@@ -48,7 +48,7 @@ export default function Skills() {
               key={Item._id}
               className="p-6 bg-white rounded-lg shadow-md border border-gray-200"
             >
-              {iconLibrary[Item.icon]}
+              {iconLibrary[Item.icon as keyof typeof iconLibrary]}
               <h3 className="text-xl font-semibold mb-2">{Item.title}</h3>
               <p className="text-gray-600">{Item.skill}</p>
             </div>

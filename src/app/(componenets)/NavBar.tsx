@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { useUser } from "../page";
+import { useUser } from "../(utils)/customHooks";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

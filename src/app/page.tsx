@@ -1,10 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { IUser } from "./interfaces_types/interfaces_types";
 import Chatbot from "./(componenets)/Chatbot";
 import OpenSourceContribution from "./(componenets)/OpenSourceContribution";
 import IntegratedApi from "./(componenets)/IntegratedApi";
@@ -12,6 +10,7 @@ import Education from "./(componenets)/Education";
 import Experience from "./(componenets)/Experience";
 import Skills from "./(componenets)/Skills";
 import { MainProject, MiniProject } from "./(componenets)/Projects";
+import { useUser } from "./(utils)/customHooks";
 
 export default function Home() {
   return (
@@ -29,41 +28,6 @@ export default function Home() {
   );
 }
 
-export const useUser = () => {
-  const [user, setUser] = useState<IUser>({
-    bio: "",
-    description: "",
-    Email: "",
-    name: "",
-    profileImage: "",
-  });
-
-  useEffect(() => {
-    (async () => {
-      const user: IUser = {
-        name: "Alan Nixon",
-        Email: "alannixon2520@gmail.com",
-        profileImage:
-          "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729070240/WhatsApp_Image_2024-10-16_at_2.34.28_PM_scrhai.jpg",
-        bio: "A passionate full-stack developer crafting digital experiences",
-        description: `Welcome to my portfolio! I'm a dedicated full-stack developer with a
-              passion for creating innovative and efficient solutions. With years of
-              experience in both front-end and back-end technologies, I strive to
-              build seamless, user-friendly applications that make a difference. My
-              journey in tech has been driven by curiosity and a constant desire to
-              learn and grow. I'm excited to share my work with you and potentially
-              collaborate on future projects!`,
-      };
-      // const response = await fetch("https://api.example.com/user");
-      // const data = await response.json();
-      setUser(user);
-    })();
-  }, []);
-
-  return { user, setUser };
-};
-
-
 function ProfileSection() {
   const { user } = useUser();
   return (
@@ -80,7 +44,7 @@ function ProfileSection() {
         </div>
       </div>
       <h1 className="text-5xl font-bold mb-4">
-        Hi, I'm <span className="text-emerald-700">{user.name}</span>
+        Hi, I&apos;m <span className="text-emerald-700">{user.name}</span>
       </h1>
       <p className="text-xl mb-8 text-gray-600">{user.bio}</p>
       <Link
@@ -91,15 +55,15 @@ function ProfileSection() {
       </Link>
       <div className="mt-12 max-w-2xl mx-auto">
         <p className="text-gray-700 leading-relaxed">
-          Welcome to my portfolio! I'm a dedicated full-stack developer with a
-          passion for creating innovative and efficient solutions. With years of
-          experience in both front-end and back-end technologies, I strive to
-          build seamless, user-friendly applications that make a difference. My
-          journey in tech has been driven by curiosity and a constant desire to
-          learn and grow. I'm excited to share my work with you and potentially
-          collaborate on future projects!
+          Welcome to my portfolio! I&apos;m a dedicated full-stack developer
+          with a passion for creating innovative and efficient solutions. With
+          years of experience in both front-end and back-end technologies, I
+          strive to build seamless, user-friendly applications that make a
+          difference. My journey in tech has been driven by curiosity and a
+          constant desire to learn and grow. I&apos;m excited to share my work
+          with you and potentially collaborate on future projects!
         </p>
       </div>
     </section>
   );
-}
+} 
