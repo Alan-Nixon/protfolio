@@ -1,32 +1,49 @@
+
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
+import NavBar from './(componenets)/NavBar'
+import { layoutProps } from './interfaces_types/interfaces_types'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Your Name - Portfolio',
+  title: 'Alan Nixon',
   description: 'Showcase of my work and skills as a developer',
-}
+  icons: {
+    icon: '/path-to-your-image/favicon.ico', // Favicon
+    apple: '/path-to-your-image/apple-touch-icon.png', // Apple touch icon
+  },
+  openGraph: {
+    title: 'Alan Nixon - Developer Portfolio',
+    description: 'Showcase of my work and skills as a developer',
+    url: 'https://yourwebsite.com',
+    siteName: 'Alan Nixon Portfolio',
+    images: [
+      {
+        url: 'https://yourwebsite.com/path-to-image.jpg', // OG Image URL
+        width: 1200, 
+        height: 630,
+        alt: 'Alan Nixon Portfolio Image',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alan Nixon - Developer Portfolio',
+    description: 'Showcase of my work and skills as a developer',
+    images: ['https://yourwebsite.com/path-to-image.jpg'], // Twitter image
+  },
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+
+export default function RootLayout({ children }: layoutProps) {
+
   return (
     <html lang="en">
       <body className={`${inter.className} bg-white text-gray-900 min-h-screen flex flex-col`}>
-        <header className="py-6 border-b border-gray-200">
-          <nav className="container mx-auto flex justify-between items-center px-4">
-            <Link href="/" className="text-2xl font-bold text-emerald-700">YourName</Link>
-            <ul className="flex space-x-4">
-              <li><Link href="/" className="hover:text-emerald-700 transition-colors">Home</Link></li>
-              <li><Link href="/projects" className="hover:text-emerald-700 transition-colors">Projects</Link></li>
-              <li><Link href="/contact" className="hover:text-emerald-700 transition-colors">Contact</Link></li>
-            </ul>
-          </nav>
-        </header>
+        <NavBar/>
         <main className="flex-grow">
           {children}
         </main>
