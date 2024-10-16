@@ -7,7 +7,13 @@ export interface IUser {
     description: string
     name: string
     Email: string
-    profileImage: string
+    profileImage: string,
+    githubLink:string,
+    linkedInLink:string
+    instaLink:string
+    stackLink:string
+    gitlabLink:string,
+    npmLink:string
 }
 
 export interface IProject {
