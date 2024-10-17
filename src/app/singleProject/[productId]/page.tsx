@@ -1,14 +1,13 @@
 "use client";
 import Link from "next/link";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
-import { notFound } from "next/navigation";
 import { useProject } from "@/app/(utils)/customHooks";
 import { IProject } from "@/app/interfaces_types/interfaces_types";
 
 export default function ProjectDetail({ params }: { params: { id: string } }) {
   const { project } = useProject();
   
-  const data = [...project].find((p: IProject) => p._id === "123");
+  const data = [...project.mainProjects,...project.miniProjects].find((p: IProject) => p._id === "123");
   console.log(project, data,params);
   if (!data) {
     // notFound();

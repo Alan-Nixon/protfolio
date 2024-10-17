@@ -9,7 +9,7 @@ export default function Projects() {
   const { project } = useProject();
 
   useEffect(() => {
-    setProjects(project);
+    setProjects([...project.mainProjects,...project.miniProjects]);
   }, []);
 
   return (
