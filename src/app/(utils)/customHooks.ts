@@ -42,7 +42,7 @@ const data: IProject[] = [...Array(6).fill({
   _id: "123",
   githubLink: "https://github.com/Alan-Nixon/Av_Shopping",
   link: "https://avproductions.site/",
-  projectImage: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729076570/protfolio/Screenshot_from_2024-10-16_16-08-39_mzn3ar.png",
+  projectImage: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729076570/protfolio/Screenshot_from_2024-10-16_16-05-10_oksgyt.png",
   Title: "Av shops",
   description: "The project is an E-Commerce you know",
   images: [
@@ -57,11 +57,13 @@ const data: IProject[] = [...Array(6).fill({
     "MongoDB",
     "Redux",
     "Stripe API",
-  ], videoUrl: ""
+  ], videoUrl: "https://res.cloudinary.com/dyh7c1wtm/video/upload/v1729144288/protfolio/ecommerceProject_flv2dr.mp4"
 })]
 
 export const useProject = () => {
-  const [project, setProject] = useState<IProject[]>(data)
-  // setProject(data)
+  const [project, setProject] = useState<IProject[]>([])
+  useEffect(() => {
+    setProject(data)
+  }, [])
   return { project, setProject }
 } 

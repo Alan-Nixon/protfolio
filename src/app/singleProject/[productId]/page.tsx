@@ -11,7 +11,8 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
   const data = [...project].find((p: IProject) => p._id === "123");
   console.log(project, data,params);
   if (!data) {
-    notFound();
+    // notFound();
+    return <>loading</>
   }
 
   return (
@@ -59,7 +60,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
         </div>
         <div>
           <img
-            src={data.images[0]}
+            src={data.projectImage}
             alt={data.Title}
             className="w-full h-auto rounded-lg shadow-md"
           />
@@ -79,13 +80,14 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
       </div>
 
       <h2 className="text-2xl font-bold mb-4">Project Demo Video</h2>
-      <div className="aspect-w-16 aspect-h-9 mb-12">
-        <iframe
+      <div className="aspect-w-16 aspect-h-9 mb-12 bg-gray-800 p-3 max-w-[750px]">
+        {/* <iframe
           src={data.videoUrl}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           className="w-full h-full rounded-lg shadow-md"
-        ></iframe>
+        ></iframe> */}
+        <video src={data.videoUrl} controls autoPlay  className="w-full" />
       </div>
     </div>
   );
