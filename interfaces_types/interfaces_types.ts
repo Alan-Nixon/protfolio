@@ -32,7 +32,7 @@ export interface IProject {
     githubLink: string;
     videoUrl: string
     images: string[]
-    mainProject:boolean
+    mainProject: boolean
     technologies: string[]
 }
 
@@ -52,12 +52,10 @@ export interface IExperience {
     achievements: string[];
 }
 
-
-
 export interface IOpenSource {
     title: string;
     description: string;
-    githubLink:string
+    githubLink: string
 }
 
 export interface IEducation {
@@ -73,8 +71,7 @@ export interface IMessage {
     Email: string
     Message: string
     Date: string
-  }
-
+}
 
 export interface ILoginCred {
     Email: string,
@@ -86,4 +83,10 @@ export interface IIntegratedApi {
     Title: string;
     Description: string;
     Docs: string;
+}
+
+export interface IContact {
+    name: string,
+    email: string,
+    message: string,
 }

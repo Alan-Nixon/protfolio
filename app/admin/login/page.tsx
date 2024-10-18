@@ -13,7 +13,7 @@ export default function AdminLogin() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  useEffect(() => { 
+  useEffect(() => {
     if (session) {
       router.push("/admin/profile");
     } else {
@@ -45,16 +45,12 @@ export default function AdminLogin() {
       email: credentials.Email,
       password: credentials.Password,
     }).then((result) => {
-      // if (!result?.ok) {
-      //   setLoading(false);
-      //   setError("Invalid Email or Password try again");
-      // } else {
-      //   router.push("/admin/dashboard");
-      console.log(result,"this is the result")
-        setTimeout(() => setLoading(false), 0);
-      // }
+      if (!result?.ok) {
+        setError("Invalid credentials");
+        return;
+      }
+      window.location.href = "/admin/profile";
     });
-    router.push("/admin/dashboard");
   };
 
   if (loading) {

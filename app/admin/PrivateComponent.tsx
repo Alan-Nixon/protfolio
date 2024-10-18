@@ -15,7 +15,7 @@ function PrivateComponent({ children }: layoutProps) {
     if (status !== "loading") {
       setLoading(false);
       if (!session) {
-        router.push("/admin/login");
+        window.location.href = "/admin/login";
       }
     }
   }, [session, status]);

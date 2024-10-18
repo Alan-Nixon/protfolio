@@ -1,14 +1,15 @@
+import { IContact } from '@/interfaces_types/interfaces_types';
 import axios from 'axios';
 
 
-const adminAxiosInstance = axios.create({
+const userAxiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_USER_URI
 });
 
 
 export const getUser = async () => {
     try {
-        const { data } = await adminAxiosInstance.get("/getUser");
+        const { data } = await userAxiosInstance.get("/getUser");
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
@@ -18,7 +19,7 @@ export const getUser = async () => {
 
 export const getProjects = async () => {
     try {
-        const { data } = await adminAxiosInstance.get("/getProjects");
+        const { data } = await userAxiosInstance.get("/getProjects");
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
@@ -28,7 +29,7 @@ export const getProjects = async () => {
 
 export const getSkills = async () => {
     try {
-        const { data } = await adminAxiosInstance.get("/getSkills");
+        const { data } = await userAxiosInstance.get("/getSkills");
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
@@ -38,7 +39,7 @@ export const getSkills = async () => {
 
 export const getExperience = async () => {
     try {
-        const { data } = await adminAxiosInstance.get("/getExperience");
+        const { data } = await userAxiosInstance.get("/getExperience");
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
@@ -48,7 +49,7 @@ export const getExperience = async () => {
 
 export const getEducation = async () => {
     try {
-        const { data } = await adminAxiosInstance.get("/getEducation");
+        const { data } = await userAxiosInstance.get("/getEducation");
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
@@ -58,7 +59,7 @@ export const getEducation = async () => {
 
 export const getOpenSource = async () => {
     try {
-        const { data } = await adminAxiosInstance.get("/getOpenSource");
+        const { data } = await userAxiosInstance.get("/getOpenSource");
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
@@ -68,10 +69,22 @@ export const getOpenSource = async () => {
 
 export const getIntegratedApiSchema = async () => {
     try {
-        const { data } = await adminAxiosInstance.get("/getIntegratedApiSchema");
+        const { data } = await userAxiosInstance.get("/getIntegratedApiSchema");
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
         return { status: false, message: e + "" }
     }
 };
+
+
+export const submitContact = async (contact: IContact) => {
+    try {
+        const { data } = await userAxiosInstance.post("/submitContact", contact)
+        return data
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+

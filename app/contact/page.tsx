@@ -5,11 +5,13 @@ import { Github, Linkedin, Instagram, FileCode, GitBranch } from "lucide-react";
 import { FaNpm as Npm } from "react-icons/fa";
 import { useUser } from "../(utils)/customHooks";
 import { validateEmail, validateName } from "react-values-validator";
+import { IContact } from "@/interfaces_types/interfaces_types";
+import { submitContact } from "../(utils)/functions";
 
 export default function Contact() {
   const { user } = useUser();
   const [error, setError] = useState("");
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<IContact>({
     name: "",
     email: "",
     message: "",
@@ -37,6 +39,7 @@ export default function Contact() {
       setError("Enter a valid Message");
       return false;
     }
+    submitContact(formData)
     console.log("Form submitted:", formData);
     setFormData({ name: "", email: "", message: "" });
   };
