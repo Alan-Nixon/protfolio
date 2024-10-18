@@ -1,14 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { adminPostLogin } from "../(functions)/functions";
 import { validateEmail, validatePassword } from "react-values-validator";
+import { signIn, useSession } from "next-auth/react";
+import LoadingPage from "@/app/(componenets)/LoadinPage";
 
 export default function AdminLogin() {
   const [credentials, setCredentials] = useState({ Email: "", Password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const { data: session, status } = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/admin/dashboard");
+    } else {
+      if (status !== "loading") {
+        setLoading(false);
+      }
+    }
+  }, [session, status]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -26,14 +39,27 @@ export default function AdminLogin() {
       setError("Enter a valid Password");
       return false;
     }
-    const { status, message, data } = await adminPostLogin(credentials);
-    if (!status) {
-      setError(message);
-      return false;
-    }
-    console.log(data)
+
+    signIn("credentials", {
+      redirect: false,
+      email: credentials.Email,
+      password: credentials.Password,
+    }).then((result) => {
+      // if (!result?.ok) {
+      //   setLoading(false);
+      //   setError("Invalid Email or Password try again");
+      // } else {
+      //   router.push("/admin/dashboard");
+      console.log(result,"this is the result")
+        setTimeout(() => setLoading(false), 0);
+      // }
+    });
     router.push("/admin/dashboard");
   };
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
