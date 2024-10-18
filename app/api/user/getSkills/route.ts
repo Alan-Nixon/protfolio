@@ -1,10 +1,10 @@
-import UserModel from "@/models/user"
+import SkillModel from "@/models/skills"
 
 
 
 export const GET = async () => {
     try {
-        const data = await UserModel.findOne();
+        const data = await SkillModel.find();
         const res = JSON.stringify({ status: true, data, message: "success" })
         return new Response(res, { status: 200 })
     } catch (e) {

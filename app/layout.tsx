@@ -1,6 +1,7 @@
 import "./globals.css";
+import '../mongodbConnect/database'
 import { Inter } from "next/font/google";
-import { layoutProps } from "./interfaces_types/interfaces_types";
+import { layoutProps } from "../interfaces_types/interfaces_types";
 import ClientWrapper from "./ClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });

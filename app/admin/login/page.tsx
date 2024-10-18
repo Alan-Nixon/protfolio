@@ -15,7 +15,7 @@ export default function AdminLogin() {
 
   useEffect(() => { 
     if (session) {
-      router.push("/admin/dashboard");
+      router.push("/admin/profile");
     } else {
       if (status !== "loading") {
         setLoading(false);

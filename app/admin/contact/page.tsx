@@ -2,17 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
+import { IMessage } from '@/interfaces_types/interfaces_types'
 
-interface Message {
-  id: number
-  name: string
-  email: string
-  message: string
-  date: string
-}
 
 export default function ContactPage() {
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<IMessage[]>([])
 
   const [replyTo, setReplyTo] = useState('')
   const [replyMessage, setReplyMessage] = useState('')
@@ -20,18 +14,18 @@ export default function ContactPage() {
 
   const data =[
     {
-      id: 1,
-      name: 'John Doe',
-      email: 'john@example.com',
-      message: 'Hi, I\'m interested in your services. Can we schedule a call?',
-      date: '2023-05-15T10:30:00Z',
+      _id: "1",
+      Name: 'John Doe',
+      Email: 'john@example.com',
+      Message: 'Hi, I\'m interested in your services. Can we schedule a call?',
+      Date: '2023-05-15T10:30:00Z',
     },
     {
-      id: 2,
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-      message: 'Great portfolio! I have a project idea I\'d like to discuss.',
-      date: '2023-05-14T15:45:00Z',
+      _id: "2",
+      Name: 'Jane Smith',
+      Email: 'jane@example.com',
+      Message: 'Great portfolio! I have a project idea I\'d like to discuss.',
+      Date: '2023-05-14T15:45:00Z',
     },
   ]
 
@@ -74,17 +68,17 @@ export default function ContactPage() {
 
       <div className="space-y-6">
         {messages.map((message) => (
-          <div key={message.id} className="bg-white p-6 rounded-lg shadow">
+          <div key={message._id} className="bg-white p-6 rounded-lg shadow">
             <div className="flex justify-between items-start mb-4">
               <div>
-                <h2 className="text-xl font-semibold">{message.name}</h2>
-                <p className="text-gray-600">{message.email}</p>
+                <h2 className="text-xl font-semibold">{message.Name}</h2>
+                <p className="text-gray-600">{message.Email}</p>
               </div>
-              <p className="text-sm text-gray-500">{formatDate(message.date)}</p>
+              <p className="text-sm text-gray-500">{formatDate(message.Date)}</p>
             </div>
-            <p className="text-gray-700 mb-4">{message.message}</p>
+            <p className="text-gray-700 mb-4">{message.Message}</p>
             <button
-              onClick={() => handleReply(message.email)}
+              onClick={() => handleReply(message.Email)}
               className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               Reply

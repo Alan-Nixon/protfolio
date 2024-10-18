@@ -1,7 +1,8 @@
 "use client";
 import { Code, Database, Server } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { ISkill } from "../interfaces_types/interfaces_types";
+import { ISkill } from "../../interfaces_types/interfaces_types";
+import { getSkills } from "@/app/(utils)/functions";
 
 const iconLibrary = {
   Code: <Code size={48} className="mx-auto mb-4 text-emerald-700" />,
@@ -11,31 +12,9 @@ const iconLibrary = {
 
 export default function Skills() {
   const [skills, setSkills] = useState<ISkill[]>([]);
-  const data: ISkill[] = [
-    {
-      _id: Math.random() * 100000 + "",
-      icon: "Code",
-      title: "Frontend Development",
-      skill: "HTML, CSS, JavaScript, React, Next.js",
-    },
-    {
-      _id: Math.random() * 100000 + "",
-      icon: "Server",
-      title: "Backend Development",
-      skill: "Node.js, Express, Python, Django",
-    },
-    {
-      _id: Math.random() * 100000 + "",
-      icon: "Database",
-      title: "Database Management",
-      skill: "MySQL, PostgreSQL, MongoDB",
-    },
-  ];
 
   useEffect(() => {
-    (async () => {
-      setSkills(data);
-    })();
+    getSkills().then(({ data }) => setSkills(data));
   }, []);
 
   return (
@@ -46,7 +25,7 @@ export default function Skills() {
           return (
             <div
               key={Item._id}
-              className="p-6 bg-white rounded-lg shadow-md border border-gray-200"
+              className="p-6 ml-2 bg-white rounded-lg shadow-md border border-gray-200"
             >
               {iconLibrary[Item.icon as keyof typeof iconLibrary]}
               <h3 className="text-xl font-semibold mb-2">{Item.title}</h3>

@@ -1,15 +1,16 @@
 "use client";
 import Link from "next/link";
-import { IProject } from "../interfaces_types/interfaces_types";
+import { IProject } from "../../interfaces_types/interfaces_types";
 import { useEffect, useState } from "react";
-import { useProject } from "../(utils)/customHooks";
+import { getProjects } from "../(utils)/functions";
 
 export default function Projects() {
   const [projects, setProjects] = useState<IProject[]>([]);
-  const { project } = useProject();
 
   useEffect(() => {
-    setProjects([...project.mainProjects,...project.miniProjects]);
+    getProjects().then(({ data }) =>
+      setProjects([...data.mainProjects, ...data.miniProjects])
+    );
   }, []);
 
   return (
@@ -29,8 +30,11 @@ export default function Projects() {
             <div className="p-6">
               <h2 className="text-xl font-semibold mb-2">{project.Title}</h2>
               <p className="text-gray-600 mb-4">{project.description}</p>
+              <p className="font-bold text-red-600">
+                {project.mainProject ? "Main Project" : "Mini Project"}
+              </p>
               <Link
-                href={`/project`}
+                href={`/singleProject/${project._id}`}
                 className="text-emerald-700 hover:underline"
               >
                 View Details

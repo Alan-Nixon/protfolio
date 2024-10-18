@@ -32,6 +32,7 @@ export interface IProject {
     githubLink: string;
     videoUrl: string
     images: string[]
+    mainProject:boolean
     technologies: string[]
 }
 
@@ -56,6 +57,7 @@ export interface IExperience {
 export interface IOpenSource {
     title: string;
     description: string;
+    githubLink:string
 }
 
 export interface IEducation {
@@ -64,6 +66,14 @@ export interface IEducation {
     Year: string;
     details: string[];
 }
+
+export interface IMessage {
+    _id: string
+    Name: string
+    Email: string
+    Message: string
+    Date: string
+  }
 
 
 export interface ILoginCred {

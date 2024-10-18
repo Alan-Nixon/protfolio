@@ -3,30 +3,13 @@
 import { Book } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { IIntegratedApi } from "../interfaces_types/interfaces_types";
-
-
+import { IIntegratedApi } from "../../interfaces_types/interfaces_types";
+import { getIntegratedApiSchema } from "@/app/(utils)/functions";
 
 export default function IntegratedApi() {
   const [api, setApi] = useState<IIntegratedApi[]>([]);
   useEffect(() => {
-    const data: IIntegratedApi[] = [
-      "Stripe",
-      "Twilio",
-      "Google Maps",
-      "SendGrid",
-      "AWS S3",
-      "OpenAI",
-    ].map((i) => ({
-      _id: Math.random() * 100000 + "",
-      Title: i,
-      Description:
-        "Integrated " +
-        i +
-        " API for enhanced functionality in various projects.",
-      Docs: "",
-    }));
-    setApi(data);
+    getIntegratedApiSchema().then(({ data }) => setApi(data));
   }, []);
   return (
     <section className="py-20">

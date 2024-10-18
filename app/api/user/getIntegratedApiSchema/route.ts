@@ -1,10 +1,10 @@
-import UserModel from "@/models/user"
+import IntegratedApiModel from "@/models/integratedApi";
 
 
 
 export const GET = async () => {
     try {
-        const data = await UserModel.findOne();
+        const data = await IntegratedApiModel.find();
         const res = JSON.stringify({ status: true, data, message: "success" })
         return new Response(res, { status: 200 })
     } catch (e) {

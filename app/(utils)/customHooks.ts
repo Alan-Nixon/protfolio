@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { IUser, IuseProjects } from "../interfaces_types/interfaces_types";
-import { getUser, getProjects } from './functions'
+import { IUser } from "../../interfaces_types/interfaces_types";
+import { getUser } from './functions'
 
 export const useUser = () => {
   const [user, setUser] = useState<IUser>({
@@ -19,15 +19,3 @@ export const useUser = () => {
   return { user, setUser };
 };
 
-export const useProject = () => {
-  const [project, setProject] = useState<IuseProjects>({ mainProjects: [], miniProjects: [] })
-  useEffect(() => {
-    getProjects().then(res => {
-      setProject({
-        mainProjects: res.data.mainProjects ?? [],
-        miniProjects: res.data.miniProjects ?? []
-      })
-    })
-  }, [])
-  return { project, setProject }
-} 

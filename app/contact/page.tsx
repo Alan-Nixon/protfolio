@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { Github, Linkedin, Instagram, FileCode, GitBranch } from "lucide-react";
-import { FaNpm as Npm } from 'react-icons/fa';
+import { FaNpm as Npm } from "react-icons/fa";
 import { useUser } from "../(utils)/customHooks";
-
+import { validateEmail, validateName } from "react-values-validator";
 
 export default function Contact() {
   const { user } = useUser();
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,10 +20,23 @@ export default function Contact() {
   ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
+    setError("");
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateName(formData.name)) {
+      setError("Enter a valid name");
+      return false;
+    }
+    if (!validateEmail(formData.email)) {
+      setError("Enter a valid email");
+      return false;
+    }
+    if (formData.message.trim().length < 10) {
+      setError("Enter a valid Message");
+      return false;
+    }
     console.log("Form submitted:", formData);
     setFormData({ name: "", email: "", message: "" });
   };
@@ -99,6 +113,7 @@ export default function Contact() {
             onSubmit={handleSubmit}
             className="bg-emerald-50 p-8 rounded-lg shadow-md"
           >
+            {error && <p className="text-red-600">{error}</p>}
             <div className="mb-6">
               <label
                 htmlFor="name"

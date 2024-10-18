@@ -10,8 +10,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname()
 
   const navItems = [
-    { href: '/admin/projects', label: 'Projects', icon: Briefcase },
     { href: '/admin/profile', label: 'Profile', icon: User },
+    { href: '/admin/projects', label: 'Projects', icon: Briefcase },
     { href: '/admin/skills', label: 'Skills', icon: Code },
     { href: '/admin/Education', label: 'Education', icon: Book },
     { href: '/admin/integratedApi', label: 'Integrated APIs', icon: Database },

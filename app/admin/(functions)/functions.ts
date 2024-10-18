@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ILoginCred } from '../../interfaces_types/interfaces_types';
+import { ILoginCred } from '../../../interfaces_types/interfaces_types';
 
 
 const adminAxiosInstance = axios.create({

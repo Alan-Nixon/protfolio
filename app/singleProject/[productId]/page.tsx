@@ -1,17 +1,24 @@
 "use client";
 import Link from "next/link";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
-import { useProject } from "@/app/(utils)/customHooks";
-import { IProject } from "@/app/interfaces_types/interfaces_types";
+import { IProject } from "@/interfaces_types/interfaces_types";
+import LoadingPage from "@/app/(componenets)/LoadinPage";
+import { useEffect, useState } from "react";
+import { getProjects } from "@/app/(utils)/functions";
 
-export default function ProjectDetail({ params }: { params: { id: string } }) {
-  const { project } = useProject();
-  
-  const data = [...project.mainProjects,...project.miniProjects].find((p: IProject) => p._id === "123");
-  console.log(project, data,params);
+export default function ProjectDetail({ params }: { params: { productId: string } }) {
+  const [data, setData] = useState<IProject>();
+  useEffect(() => {
+    getProjects().then(({ data }) => {
+      const project = [...data.mainProjects, ...data.miniProjects].find(
+        (p) => p._id === params.productId
+      );
+      setData(project);
+    });
+  }, []);
+
   if (!data) {
-    // notFound();
-    return <>loading</>
+    return <LoadingPage />;
   }
 
   return (
@@ -86,7 +93,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
           allowFullScreen
           className="w-full h-full rounded-lg shadow-md"
         ></iframe> */}
-        <video src={data.videoUrl} controls autoPlay  className="w-full" />
+        <video src={data.videoUrl} controls autoPlay className="w-full" />
       </div>
     </div>
   );

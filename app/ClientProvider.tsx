@@ -30,7 +30,9 @@ function ClientWrapper({ children }: { children: ReactNode }) {
           </footer>
         </>
       ) : (
-        children
+        <main className="flex-grow">
+            <SessionProvider>{children}</SessionProvider>
+          </main>
       )}
     </>
   );

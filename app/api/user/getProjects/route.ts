@@ -1,15 +1,11 @@
-import { existsSync, readFileSync } from 'fs'
-import { join } from 'path'
-import { BSON } from 'bson'
-const { deserialize } = BSON
+import ProjectModel from '@/models/project'
 
 
-export const GET = () => {
+export const GET = async () => {
     try {
-        const filePath = join(process.cwd(), 'public', 'projects.bson');
-        if (!existsSync(filePath)) { throw new Error(`File not found: ${filePath}`) }
-        const data = deserialize(readFileSync(filePath))
-        const res = JSON.stringify({ status: true, data, message: "success" })
+        const mainProjects = await ProjectModel.find({ mainProject: true })
+        const miniProjects = await ProjectModel.find({ mainProject: false })
+        const res = JSON.stringify({ status: true, data: { mainProjects , miniProjects}, message: "success" })
         return new Response(res, { status: 200 })
     } catch (error) {
         console.error("Error in POST /api/admin/login:", error);
