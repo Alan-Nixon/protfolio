@@ -13,7 +13,7 @@ export default function AdminLogin() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
+  useEffect(() => { 
     if (session) {
       router.push("/admin/dashboard");
     } else {

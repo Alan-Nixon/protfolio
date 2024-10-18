@@ -1,6 +1,5 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import NavBar from "./(componenets)/NavBar";
 import { layoutProps } from "./interfaces_types/interfaces_types";
 import ClientWrapper from "./ClientProvider";
 
@@ -37,20 +36,13 @@ export const metadata = {
   },
 };
 
-
 export default function RootLayout({ children }: layoutProps) {
   return (
     <html lang="en">
       <body
         className={`${inter.className} bg-white text-gray-900 min-h-screen flex flex-col`}
       >
-        <NavBar />
-        <main className="flex-grow">
-          <ClientWrapper>{children}</ClientWrapper>
-        </main>
-        <footer className="py-6 text-center text-gray-500 border-t border-gray-200">
-          <p>&copy; 2023 YourName. All rights reserved.</p>
-        </footer>
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
   );

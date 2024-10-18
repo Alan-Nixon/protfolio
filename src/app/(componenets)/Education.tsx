@@ -11,9 +11,9 @@ export default function Education() {
   useEffect(() => {
     const data: IEducation[] = [
       {
-        degree: 'Bachelor of Science in Computer Science',
+        Title: 'Bachelor of Science in Computer Science',
         institution: 'University Name',
-        graduationYear: 'Graduation Year',
+        Year: 'Graduation Year',
         details: [
           'Relevant coursework: Data Structures, Algorithms, Database Systems, Web Development',
           'Senior project: Developed a machine learning model for predicting stock prices',
@@ -21,9 +21,9 @@ export default function Education() {
         ],
       },
       {
-        degree: 'Full-Stack Web Development Bootcamp',
+        Title: 'Full-Stack Web Development Bootcamp',
         institution: 'Bootcamp Name',
-        graduationYear: 'Completion Year',
+        Year: 'Completion Year',
         details: [
           'Intensive 12-week program covering modern web development technologies',
           'Built 5 full-stack projects, including a social media application and an e-commerce platform',
@@ -41,8 +41,8 @@ export default function Education() {
       <div className="max-w-2xl mx-auto">
         {educationData.map((item, index) => (
           <div key={index} className="mb-8 bg-white p-6 rounded-lg shadow-md border border-gray-200">
-            <h3 className="text-xl font-semibold mb-2">{item.degree}</h3>
-            <p className="text-gray-600 mb-4">{item.institution}, {item.graduationYear}</p>
+            <h3 className="text-xl font-semibold mb-2">{item.Title}</h3>
+            <p className="text-gray-600 mb-4">{item.institution}, {item.Year}</p>
             <ul className="list-disc list-inside text-gray-600">
               {item.details.map((detail, detailIndex) => (
                 <li key={detailIndex}>{detail}</li>

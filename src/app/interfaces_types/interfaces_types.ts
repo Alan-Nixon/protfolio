@@ -19,8 +19,9 @@ export interface IUser {
 
 export interface IuseProjects {
     mainProjects: IProject[];
-    miniProjects:IProject[]
+    miniProjects: IProject[]
 }
+
 
 export interface IProject {
     _id: string;
@@ -29,8 +30,8 @@ export interface IProject {
     description: string;
     link: string;
     githubLink: string;
-    images: string[]
     videoUrl: string
+    images: string[]
     technologies: string[]
 }
 
@@ -58,9 +59,9 @@ export interface IOpenSource {
 }
 
 export interface IEducation {
-    degree: string;
+    Title: string;
     institution: string;
-    graduationYear: string;
+    Year: string;
     details: string[];
 }
 
@@ -68,4 +69,11 @@ export interface IEducation {
 export interface ILoginCred {
     Email: string,
     Password: string
-} 
+}
+
+export interface IIntegratedApi {
+    _id: string;
+    Title: string;
+    Description: string;
+    Docs: string;
+}

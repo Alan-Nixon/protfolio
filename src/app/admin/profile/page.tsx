@@ -1,130 +1,246 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { getProfileDetails } from "../(functions)/functions";
-import { IUser } from "../../interfaces_types/interfaces_types";
-import PrivateComponent from "../PrivateComponent";
+import { useState, useRef } from 'react'
+import { User } from 'lucide-react'
 
-export default function EditProfile() {
-  const [image, setImage] = useState<File | null>(null);
-  const router = useRouter();
-  const [profile, setProfile] = useState<IUser>({
-    bio: "",
-    githubLink: "",
-    gitlabLink: "",
-    description: "",
-    linkedInLink: "",
-    instaLink: "",
-    Email: "",
-    stackLink: "",
-    name: "",
-    profileImage: "",
-    npmLink: "",
-  });
+interface Profile {
+  name: string
+  email: string
+  bio: string
+  description: string
+  profileImage: string
+  githubLink: string
+  linkedInLink: string
+  instaLink: string
+  stackLink: string
+  gitlabLink: string
+  npmLink: string
+}
 
-  useEffect(() => {
-    getProfileDetails().then(({ data }) => {
-      setProfile(data);
-    });
-  }, []);
+export default function ProfilePage() {
+  const [profile, setProfile] = useState<Profile>({
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    bio: 'Full-stack developer passionate about creating innovative solutions.',
+    description: 'I have 5 years of experience in web development, specializing in React and Node.js.',
+    profileImage: '/placeholder.svg?height=200&width=200',
+    githubLink: 'https://github.com/johndoe',
+    linkedInLink: 'https://linkedin.com/in/johndoe',
+    instaLink: 'https://instagram.com/johndoe',
+    stackLink: 'https://stackoverflow.com/users/123456/johndoe',
+    gitlabLink: 'https://gitlab.com/johndoe',
+    npmLink: 'https://www.npmjs.com/~johndoe',
+  })
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setProfile((prevState) => ({ ...prevState, [name]: value }));
-  };
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setProfile({ ...profile, [name]: value })
+  }
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setProfile({ ...profile, profileImage: reader.result as string })
+      }
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real application, you would send this data to your backend
-    console.log("Profile updated:", profile);
-    if (image) {
-      console.log("New profile image:", image);
-    }
-    // Redirect back to the admin dashboard
-    router.push("/admin/dashboard");
-  };
+    e.preventDefault()
+    // Here you would typically send the updated profile to your backend
+    console.log('Updated profile:', profile)
+    alert('Profile updated successfully!')
+  }
 
   return (
-    <PrivateComponent>
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl text-center font-bold mb-8">Edit Profile</h1>
-        <form
-          onSubmit={handleSubmit}
-          className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md"
-        >
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={profile.name}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            />
+    <div className="max-w-4xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6">Edit Profile</h1>
+
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow">
+        <div className="mb-6 flex items-center">
+          <div className="mr-4">
+            {profile.profileImage ? (
+              <img src={profile.profileImage} alt="Profile" className="w-24 h-24 rounded-full object-cover" />
+            ) : (
+              <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
+                <User size={48} className="text-gray-400" />
+              </div>
+            )}
           </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={profile.Email}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="bio" className="block text-sm font-medium mb-2">
-              Bio
-            </label>
-            <textarea
-              id="bio"
-              name="bio"
-              value={profile.bio}
-              onChange={handleChange}
-              rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            ></textarea>
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="profileImage"
-              className="block text-sm font-medium mb-2"
-            >
-              Profile Image
-            </label>
+          <div>
             <input
               type="file"
-              id="profileImage"
-              onChange={handleImageChange}
+              ref={fileInputRef}
+              onChange={handleImageUpload}
               accept="image/*"
-              className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+              className="hidden"
             />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700"
+            >
+              Change Profile Picture
+            </button>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-emerald-600 text-white px-6 py-3 rounded-md hover:bg-emerald-700 transition-colors"
-          >
-            Update Profile
-          </button>
-        </form>
-      </div>
-    </PrivateComponent>
-  );
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={profile.name}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={profile.email}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
+            Bio
+          </label>
+          <textarea
+            id="bio"
+            name="bio"
+            value={profile.bio}
+            onChange={handleChange}
+            rows={3}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+            required
+          ></textarea>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={profile.description}
+            onChange={handleChange}
+            rows={5}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+            required
+          ></textarea>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="githubLink" className="block text-sm font-medium text-gray-700">
+            GitHub Link
+          </label>
+          <input
+            type="url"
+            id="githubLink"
+            name="githubLink"
+            value={profile.githubLink}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="linkedInLink" className="block text-sm font-medium text-gray-700">
+            LinkedIn Link
+          </label>
+          <input
+            type="url"
+            id="linkedInLink"
+            name="linkedInLink"
+            value={profile.linkedInLink}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="instaLink" className="block text-sm font-medium text-gray-700">
+            Instagram Link
+          </label>
+          <input
+            type="url"
+            id="instaLink"
+            name="instaLink"
+            value={profile.instaLink}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="stackLink" className="block text-sm font-medium text-gray-700">
+            Stack Overflow Link
+          </label>
+          <input
+            type="url"
+            id="stackLink"
+            name="stackLink"
+            value={profile.stackLink}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="gitlabLink" className="block text-sm font-medium text-gray-700">
+            GitLab Link
+          </label>
+          <input
+            type="url"
+            id="gitlabLink"
+            name="gitlabLink"
+            value={profile.gitlabLink}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="npmLink" className="block text-sm font-medium text-gray-700">
+            npm Link
+          </label>
+          <input
+            type="url"
+            id="npmLink"
+            name="npmLink"
+            value={profile.npmLink}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-300 focus:ring focus:ring-emerald-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700"
+        >
+          Update Profile
+        </button>
+      </form>
+    </div>
+  )
 }
