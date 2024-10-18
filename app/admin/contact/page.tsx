@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 
 interface Message {
@@ -12,7 +12,13 @@ interface Message {
 }
 
 export default function ContactPage() {
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState<Message[]>([])
+
+  const [replyTo, setReplyTo] = useState('')
+  const [replyMessage, setReplyMessage] = useState('')
+  const [showReplyForm, setShowReplyForm] = useState(false)
+
+  const data =[
     {
       id: 1,
       name: 'John Doe',
@@ -27,11 +33,11 @@ export default function ContactPage() {
       message: 'Great portfolio! I have a project idea I\'d like to discuss.',
       date: '2023-05-14T15:45:00Z',
     },
-  ])
+  ]
 
-  const [replyTo, setReplyTo] = useState('')
-  const [replyMessage, setReplyMessage] = useState('')
-  const [showReplyForm, setShowReplyForm] = useState(false)
+  useEffect(()=>{
+    setMessages(data)
+  },[])
 
   const handleReply = (email: string) => {
     setReplyTo(email)

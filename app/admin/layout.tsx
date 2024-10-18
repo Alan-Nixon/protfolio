@@ -10,11 +10,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname()
 
   const navItems = [
-    { href: '/admin/Education', label: 'Education', icon: Book },
-    { href: '/admin/skills', label: 'Skills', icon: Code },
-    { href: '/admin/integratedApi', label: 'Integrated APIs', icon: Database },
     { href: '/admin/projects', label: 'Projects', icon: Briefcase },
     { href: '/admin/profile', label: 'Profile', icon: User },
+    { href: '/admin/skills', label: 'Skills', icon: Code },
+    { href: '/admin/Education', label: 'Education', icon: Book },
+    { href: '/admin/integratedApi', label: 'Integrated APIs', icon: Database },
     { href: '/admin/contact', label: 'Contact', icon: Contact },
   ]
 
@@ -63,7 +63,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </Link>
           ))}
         </nav>
-        <button className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600">
+        <button className="flex items-center mb-2 w-full px-4 py-2 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600">
           <LogOut className="mr-3 h-5 w-5" />
           Logout
         </button>

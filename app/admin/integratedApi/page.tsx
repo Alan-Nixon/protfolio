@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Edit, Trash } from 'lucide-react'
+import { Edit, Trash } from 'lucide-react'
 
 interface IntegratedAPI {
   id: number
