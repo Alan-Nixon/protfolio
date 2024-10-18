@@ -7,6 +7,7 @@ export const POST = async (req: Request) => {
         console.log(body)
         return new Response("success", { status: 200 })
     } catch (error) {
-
+        console.log(error)
+        return new Response("failed", { status: 500 })
     }
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ILoginCred } from '../../../interfaces_types/interfaces_types';
+import { ILoginCred,IUser } from '../../../interfaces_types/interfaces_types';
 
 
 const adminAxiosInstance = axios.create({
@@ -27,3 +27,12 @@ export const getProfileDetails = async () => {
     }
 }
 
+export const changeProfile = async (user:IUser) => {
+    try {
+        const { data } = await adminAxiosInstance.patch("/profile",user);
+        return data;
+    } catch (e) {
+        console.error("Error during login request:", e);
+        return { status: false, message: e + "", daata: null }
+    }
+}
