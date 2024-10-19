@@ -4,12 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { User } from "lucide-react";
 import { IUser } from "@/interfaces_types/interfaces_types";
 import { getUser } from "@/app/(utils)/functions";
-import {
-  validateEmail,
-  validateName,
-  validateURL,
-} from "react-values-validator";
 import { changeProfile } from "../(functions)/functions";
+import { profileValidations } from "@/app/(utils)/validations";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<IUser>({
@@ -27,10 +23,14 @@ export default function ProfilePage() {
   });
   const [error, setError] = useState("");
   useEffect(() => {
-    getUser().then(({ data }) => setProfile(data));
+    setProfileData();
   }, []);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  function setProfileData() {
+    getUser().then(({ data }) => setProfile(data));
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,64 +51,10 @@ export default function ProfilePage() {
     }
   };
 
-  const validateDescription = (desc: string) => {
-    const trimmedDesc = desc.trim();
-    const hasThreeAlphabeticChars = /[a-zA-Z].*[a-zA-Z].*[a-zA-Z]/.test(trimmedDesc);
-    const hasMoreThanThreeWords = trimmedDesc.split(/\s+/).length > 3;  
-    return hasThreeAlphabeticChars && hasMoreThanThreeWords;
-  };
-  
-  
-  
-
-  const validations = () => {
-    if (!validateName(profile.name)) {
-      setError("Enter a valid Name");
-      return false;
-    }
-    if (!validateEmail(profile.Email)) {
-      setError("Enter a valid Email");
-      return false;
-    }
-    if (!validateDescription(profile.description)) {
-      setError("Enter a valid Description");
-      return false;
-    }
-    if (!validateDescription(profile.bio)) {
-      setError("Enter a valid Bio");
-      return false;
-    }
-    if (!validateURL(profile.githubLink)) {
-      setError("Enter a valid Github link");
-      return false;
-    }
-    if (!validateURL(profile.linkedInLink)) {
-      setError("Enter a valid Linkedin");
-      return false;
-    }
-    if (!validateURL(profile.instaLink)) {
-      setError("Enter a valid insta Link");
-      return false;
-    }
-    if (!validateURL(profile.stackLink)) {
-      setError("Enter a valid Stack overflow link");
-      return false;
-    }
-    if (!validateURL(profile.gitlabLink)) {
-      setError("Enter a valid git lab link");
-      return false;
-    }
-    if (!validateURL(profile.npmLink)) {
-      setError("Enter a valid npm link");
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (validations()) {
-      changeProfile(profile)
+    if (profileValidations(profile, setError)) {
+      changeProfile(profile);
     }
   };
 
@@ -131,7 +77,7 @@ export default function ProfilePage() {
               </div>
             )}
           </div>
-          <div>
+          <div className="flex w-full">
             <input
               type="file"
               ref={fileInputRef}
@@ -145,6 +91,13 @@ export default function ProfilePage() {
               className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700"
             >
               Change Profile Picture
+            </button>
+            <button
+              type="button"
+              onClick={() => setProfileData()}
+              className="px-4 ml-auto py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              Revert Changes
             </button>
           </div>
         </div>
