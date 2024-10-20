@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ILoginCred, IProject, IUser } from '../../../interfaces_types/interfaces_types';
+import { ILoginCred, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
 
 
 const adminAxiosInstance = axios.create({
@@ -60,6 +60,36 @@ export const updateProject = async (project: IProject) => {
 export const deleteProject = async (projectId: string) => {
     try {
         const { data } = await adminAxiosInstance.delete("/project?projectId=" + projectId);
+        return data;
+    } catch (e) {
+        console.error("Error during login request:", e);
+        return { status: false, message: e + "", data: null }
+    }
+}
+
+export const addSkill = async (skill: Omit<ISkill, "_id">) => {
+    try {
+        const { data } = await adminAxiosInstance.post("/skill", skill);
+        return data;
+    } catch (e) {
+        console.error("Error during login request:", e);
+        return { status: false, message: e + "", data: null }
+    }
+}
+
+export const updateSkill = async (skill: ISkill) => {
+    try {
+        const { data } = await adminAxiosInstance.put("/skill", skill);
+        return data;
+    } catch (e) {
+        console.error("Error during login request:", e);
+        return { status: false, message: e + "", data: null }
+    }
+}
+
+export const deleteSkill = async (skillId: string) => {
+    try {
+        const { data } = await adminAxiosInstance.delete("/skill?skillId=" + skillId);
         return data;
     } catch (e) {
         console.error("Error during login request:", e);

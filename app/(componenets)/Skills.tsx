@@ -1,5 +1,5 @@
 "use client";
-import { Code, Database, Server } from "lucide-react";
+import { Code, Database, Server, Cable } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { ISkill } from "../../interfaces_types/interfaces_types";
 import { getSkills } from "@/app/(utils)/functions";
@@ -8,6 +8,7 @@ const iconLibrary = {
   Code: <Code size={48} className="mx-auto mb-4 text-emerald-700" />,
   Database: <Database size={48} className="mx-auto mb-4 text-emerald-700" />,
   Server: <Server size={48} className="mx-auto mb-4 text-emerald-700" />,
+  Cable: <Cable size={48} className="mx-auto mb-4 text-emerald-700" />,
 };
 
 export default function Skills() {

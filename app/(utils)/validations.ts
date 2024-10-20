@@ -1,4 +1,4 @@
-import { IProject, IUser } from "@/interfaces_types/interfaces_types";
+import { IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
 import { Dispatch, SetStateAction } from "react";
 import {
   validateEmail,
@@ -82,9 +82,9 @@ export function validationProject(project: Omit<IProject, "_id"> | IProject, set
     setError("Please Enter a github link")
     return false
   }
-  if(!validateShaImage(project.videoUrl)) {
-      setError("You need a video for your project")
-      return false
+  if (!validateShaImage(project.videoUrl)) {
+    setError("You need a video for your project")
+    return false
   }
   if (project.technologies.length === 0) {
     setError("Please add minimum one technology")
@@ -99,5 +99,21 @@ export function validationProject(project: Omit<IProject, "_id"> | IProject, set
     return false
   }
 
+  return true
+}
+
+export function validationSkill(skill: Omit<ISkill, "_id">,setError: Dispatch<SetStateAction<string>>) {
+  if(!validateName(skill.title)) {
+    setError("Enter a valid skill title")
+    return false
+  }
+  if (skill.icon.trim().length < 1) {
+    setError("Enter a valid icon name")    
+    return false
+  }
+  if (skill.skill.trim().length < 1) {
+    setError("Enter a valid skill")    
+    return false
+  }
   return true
 }
