@@ -1,10 +1,10 @@
-import IntegratedApiModel from "@/models/integratedApi"
+import OpenSourceModel from "@/models/openSource"
 
 
 export const POST = async (req: Request) => {
     try {
         const body = await req.json()
-        await IntegratedApiModel.insertMany(body)
+        await OpenSourceModel.insertMany(body)
         const res = JSON.stringify({status:true,message:"success"})
         return new Response(res, { status: 200 })
     } catch (error) {
@@ -16,7 +16,7 @@ export const POST = async (req: Request) => {
 export const PUT = async (req: Request) => {
     try {
         const body = await req.json()
-        const data = await IntegratedApiModel.findByIdAndUpdate(body._id,body)
+        const data = await OpenSourceModel.findByIdAndUpdate(body._id,body)
         const res = JSON.stringify({status:true,data,message:"success"})
         return new Response(res, { status: 200 })
     } catch (error) {
@@ -28,12 +28,12 @@ export const PUT = async (req: Request) => {
 export const DELETE = async (req: Request) => {
     try {
         const { searchParams } = new URL(req.url!);
-        const apiId = searchParams.get('apiId');
-        const data = await IntegratedApiModel.findByIdAndDelete(apiId)
+        const openSourceId = searchParams.get('openSourceId');
+        const data = await OpenSourceModel.findByIdAndDelete(openSourceId)
         const res = JSON.stringify({status:true,data,message:"success"})
         return new Response(res, { status: 200 })
     } catch (error) {
         console.log(error)
     }
 }
- 
+

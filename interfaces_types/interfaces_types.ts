@@ -53,6 +53,7 @@ export interface IExperience {
 }
 
 export interface IOpenSource {
+    _id:string
     title: string;
     description: string;
     githubLink: string

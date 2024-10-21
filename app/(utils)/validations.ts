@@ -1,4 +1,4 @@
-import { IEducation, IIntegratedApi, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
+import { IEducation, IIntegratedApi, IOpenSource, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
 import { Dispatch, SetStateAction } from "react";
 import {
   validateEmail,
@@ -151,6 +151,22 @@ export function validationApi(Api: IIntegratedApi, setError: Dispatch<SetStateAc
   }
   if (!validateURL(Api.Docs)) {
     setError("Enter a valid url to the doc")
+    return false
+  }
+  return true
+}
+
+export function validationOpenSource(openSource: IOpenSource, setError: Dispatch<SetStateAction<string>>) {
+  if (!validateName(openSource.title)) {
+    setError("Enter a valid openSource title")
+    return false
+  }
+  if (!validateDescription(openSource.description)) {
+    setError("Enter a valid description")
+    return false
+  }
+  if (!validateURL(openSource.githubLink)) {
+    setError("Enter a valid url to the github")
     return false
   }
   return true

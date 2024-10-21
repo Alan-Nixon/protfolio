@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IEducation, IIntegratedApi, ILoginCred, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
+import { IEducation, IIntegratedApi, ILoginCred, IOpenSource, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
 
 
 const adminAxiosInstance = axios.create({
@@ -153,6 +153,39 @@ export const updateEducation = async (Education: IEducation) => {
 export const deleteEducation = async (educationId: string) => {
     try {
         const { data } = await adminAxiosInstance.delete("/education?educationId=" + educationId);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+
+export const addOpenSource = async (openSource: IOpenSource) => {
+    try {
+        const { description, title, githubLink }: IOpenSource = openSource
+        const { data } = await adminAxiosInstance.post("/openSource", { description, title, githubLink });
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+
+export const updateOpenSource = async (openSource: IOpenSource) => {
+    try {
+        const { data } = await adminAxiosInstance.put("/openSource", openSource);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const deleteOpenSource = async (openSourceId: string) => {
+    try {
+        const { data } = await adminAxiosInstance.delete("/openSource?openSourceId=" + openSourceId);
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
