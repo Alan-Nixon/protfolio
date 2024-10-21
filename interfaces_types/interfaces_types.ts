@@ -53,26 +53,18 @@ export interface IExperience {
 }
 
 export interface IOpenSource {
-    _id:string
+    _id: string
     title: string;
     description: string;
     githubLink: string
 }
 
 export interface IEducation {
-    _id:string,
+    _id: string,
     Title: string;
     institution: string;
     Year: string;
     details: string[];
-}
-
-export interface IMessage {
-    _id: string
-    Name: string
-    Email: string
-    Message: string
-    Date: string
 }
 
 export interface ILoginCred {
@@ -88,7 +80,29 @@ export interface IIntegratedApi {
 }
 
 export interface IContact {
+    _id: string
     name: string,
     email: string,
     message: string,
+    createdAt: Date
+}
+
+
+export interface IMailOptions {
+    from: string
+    to: string
+    subject: string
+    html: string
+}
+
+export interface IMailOptionsArgs {
+    from: string
+    to: string
+    name: string
+    message: string
+}
+
+export interface sendReplyProps {
+    replyTo: string,
+    replyMessage: string
 }

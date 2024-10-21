@@ -4,18 +4,20 @@ import { useState } from "react";
 import { Github, Linkedin, Instagram, FileCode, GitBranch } from "lucide-react";
 import { FaNpm as Npm } from "react-icons/fa";
 import { useUser } from "../(utils)/customHooks";
-import { validateEmail, validateName } from "react-values-validator";
 import { IContact } from "@/interfaces_types/interfaces_types";
 import { submitContact } from "../(utils)/functions";
+import { validationContact } from "../(utils)/validations";
 
 export default function Contact() {
   const { user } = useUser();
   const [error, setError] = useState("");
-  const [formData, setFormData] = useState<IContact>({
+  const emptyContact = {
     name: "",
     email: "",
     message: "",
-  });
+  };
+  const [formData, setFormData] =
+    useState<Omit<IContact, "_id" | "createdAt">>(emptyContact);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -27,21 +29,11 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateName(formData.name)) {
-      setError("Enter a valid name");
-      return false;
+    if (validationContact(formData, setError)) {
+      submitContact(formData).then(() => {
+        setFormData(emptyContact);
+      });
     }
-    if (!validateEmail(formData.email)) {
-      setError("Enter a valid email");
-      return false;
-    }
-    if (formData.message.trim().length < 10) {
-      setError("Enter a valid Message");
-      return false;
-    }
-    submitContact(formData)
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", email: "", message: "" });
   };
 
   return (

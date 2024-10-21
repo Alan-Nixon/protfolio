@@ -1,4 +1,4 @@
-import { IEducation, IIntegratedApi, IOpenSource, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
+import { IContact, IEducation, IIntegratedApi, IOpenSource, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
 import { Dispatch, SetStateAction } from "react";
 import {
   validateEmail,
@@ -119,11 +119,11 @@ export function validationSkill(skill: Omit<ISkill, "_id">, setError: Dispatch<S
 }
 
 export function validationEducation(Education: IEducation, setError: Dispatch<SetStateAction<string>>) {
-  if(!validateName(Education.Title)) {
+  if (!validateName(Education.Title)) {
     setError("Enter a valid education title")
     return false
   }
-  if(!validateName(Education.institution)) {
+  if (!validateName(Education.institution)) {
     setError("Enter a valid education institute");
     return false
   }
@@ -131,7 +131,7 @@ export function validationEducation(Education: IEducation, setError: Dispatch<Se
     setError("Enter a valid education Year greater than length 3");
     return false
   }
-  if(Education.details.length === 0) {
+  if (Education.details.length === 0) {
     setError("Enter a minimum details for you education");
     return false
   }
@@ -168,6 +168,22 @@ export function validationOpenSource(openSource: IOpenSource, setError: Dispatch
   if (!validateURL(openSource.githubLink)) {
     setError("Enter a valid url to the github")
     return false
+  }
+  return true
+}
+
+export function validationContact(formData: Omit<IContact, "_id" | "createdAt">, setError: Dispatch<SetStateAction<string>>) {
+  if (!validateName(formData.name)) {
+    setError("Enter a valid name");
+    return false;
+  }
+  if (!validateEmail(formData.email)) {
+    setError("Enter a valid email");
+    return false;
+  }
+  if (formData.message.trim().length < 10) {
+    setError("Enter a valid Message");
+    return false;
   }
   return true
 }

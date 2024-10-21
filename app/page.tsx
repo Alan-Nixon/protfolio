@@ -10,8 +10,9 @@ import Education from "./(componenets)/Education";
 import Experience from "./(componenets)/Experience";
 import Skills from "./(componenets)/Skills";
 import { MainProject, MiniProject } from "./(componenets)/Projects";
-import { useUser } from "./(utils)/customHooks";
+import { textBio, useUser } from "./(utils)/customHooks";
 import LoadingPage from "./(componenets)/LoadinPage";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { user } = useUser();
@@ -35,6 +36,23 @@ export default function Home() {
 
 function ProfileSection() {
   const { user } = useUser();
+  const [text,setText] = useState("");
+  
+  useEffect(() => {
+    let currentIndex = 0;
+    const intervalId = setInterval(() => {
+      if (currentIndex < textBio.length) {
+        setText(prev => prev + ' ' + (textBio[currentIndex] || ""));
+        currentIndex++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 100); 
+
+    return () => clearInterval(intervalId); 
+  }, []);
+
+
   if(!user.name) { return <LoadingPage /> }
 
   return (
@@ -52,25 +70,19 @@ function ProfileSection() {
           )}
         </div>
       </div>
-      <h1 className="text-5xl font-bold mb-4">
+      <h1 className="text-5xl font-bold mb-4 reveal">
         Hi, I&apos;m <span className="text-emerald-700">{user.name}</span>
       </h1>
-      <p className="text-xl mb-8 text-gray-600">{user.bio}</p>
+      <p className="text-xl mb-8 text-gray-600 reveal">{user.bio}</p>
       <Link
         href="/contact"
-        className="bg-emerald-700 text-white px-6 py-3 rounded-full hover:bg-emerald-800 transition-colors inline-flex items-center"
+        className="bg-emerald-700 reveal text-white px-6 py-3 rounded-full hover:bg-emerald-800 transition-colors inline-flex items-center"
       >
         Get in touch <ArrowRight className="ml-2" />
       </Link>
       <div className="mt-12 max-w-2xl mx-auto">
-        <p className="text-gray-700 leading-relaxed">
-          Welcome to my portfolio! I&apos;m a dedicated full-stack developer
-          with a passion for creating innovative and efficient solutions. With
-          years of experience in both front-end and back-end technologies, I
-          strive to build seamless, user-friendly applications that make a
-          difference. My journey in tech has been driven by curiosity and a
-          constant desire to learn and grow. I&apos;m excited to share my work
-          with you and potentially collaborate on future projects!
+        <p className="text-gray-700 leading-relaxed reveal animate-fade-in">
+          {text}
         </p>
       </div>
     </section>

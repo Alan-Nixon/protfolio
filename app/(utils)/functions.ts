@@ -1,4 +1,4 @@
-import { IContact } from '@/interfaces_types/interfaces_types';
+import { IContact, sendReplyProps } from '@/interfaces_types/interfaces_types';
 import axios from 'axios';
 
 
@@ -77,9 +77,18 @@ export const getIntegratedApiSchema = async () => {
     }
 };
 
+export const getMessages = async () => {
+    try {
+        const { data } = await userAxiosInstance.get("/submitContact");
+        return data;
+    } catch (e) {
+        console.error("Error during login request:", e);
+        return { status: false, message: e + "" }
+    }
+}
 
 
-export const submitContact = async (contact: IContact) => {
+export const submitContact = async (contact: Omit<IContact, "_id" | "createdAt">) => {
     try {
         const { data } = await userAxiosInstance.post("/submitContact", contact)
         return data
@@ -89,3 +98,12 @@ export const submitContact = async (contact: IContact) => {
     }
 }
 
+export const sendReply = async (Data: sendReplyProps) => {
+    try {
+        const { data } = await userAxiosInstance.put("/submitContact", Data)
+        return data
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
