@@ -1,11 +1,11 @@
-import IntegratedApiModel from "@/models/integratedApi"
+import EducationModel from "@/models/education"
 
 
 export const POST = async (req: Request) => {
     try {
-        const body = await req.json()
-        await IntegratedApiModel.insertMany(body)
-        const res = JSON.stringify({status:true,message:"success"})
+        const body = await req.json() 
+        await EducationModel.insertMany(body)
+        const res = JSON.stringify({ status: true, message: "success" })
         return new Response(res, { status: 200 })
     } catch (error) {
         console.log(error)
@@ -16,8 +16,8 @@ export const POST = async (req: Request) => {
 export const PUT = async (req: Request) => {
     try {
         const body = await req.json()
-        const data = await IntegratedApiModel.findByIdAndUpdate(body._id,body)
-        const res = JSON.stringify({status:true,data,message:"success"})
+        const data = await EducationModel.findByIdAndUpdate(body._id, body);
+        const res = JSON.stringify({ status: true, data, message: "success" })
         return new Response(res, { status: 200 })
     } catch (error) {
         console.log(error)
@@ -28,9 +28,9 @@ export const PUT = async (req: Request) => {
 export const DELETE = async (req: Request) => {
     try {
         const { searchParams } = new URL(req.url!);
-        const apiId = searchParams.get('apiId');
-        const data = await IntegratedApiModel.findByIdAndDelete(apiId)
-        const res = JSON.stringify({status:true,data,message:"success"})
+        const educationId = searchParams.get('educationId');
+        await EducationModel.findByIdAndDelete(educationId)
+        const res = JSON.stringify({ status: true, data: "", message: "success" })
         return new Response(res, { status: 200 })
     } catch (error) {
         console.log(error)

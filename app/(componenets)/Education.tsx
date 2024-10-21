@@ -8,7 +8,6 @@ export default function Education() {
   const [educationData, setEducationData] = useState<IEducation[]>([]);
 
   useEffect(() => {
-    // const data: IEducation[] = ;
     getEducation().then(({ data }) => {
       setEducationData(data);
     });

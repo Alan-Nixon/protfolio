@@ -1,4 +1,4 @@
-import { IIntegratedApi, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
+import { IEducation, IIntegratedApi, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
 import { Dispatch, SetStateAction } from "react";
 import {
   validateEmail,
@@ -113,6 +113,26 @@ export function validationSkill(skill: Omit<ISkill, "_id">, setError: Dispatch<S
   }
   if (skill.skill.trim().length < 1) {
     setError("Enter a valid skill")
+    return false
+  }
+  return true
+}
+
+export function validationEducation(Education: IEducation, setError: Dispatch<SetStateAction<string>>) {
+  if(!validateName(Education.Title)) {
+    setError("Enter a valid education title")
+    return false
+  }
+  if(!validateName(Education.institution)) {
+    setError("Enter a valid education institute");
+    return false
+  }
+  if (Education.Year.trim().length < 4) {
+    setError("Enter a valid education Year greater than length 3");
+    return false
+  }
+  if(Education.details.length === 0) {
+    setError("Enter a minimum details for you education");
     return false
   }
   return true

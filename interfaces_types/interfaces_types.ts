@@ -59,6 +59,7 @@ export interface IOpenSource {
 }
 
 export interface IEducation {
+    _id:string,
     Title: string;
     institution: string;
     Year: string;

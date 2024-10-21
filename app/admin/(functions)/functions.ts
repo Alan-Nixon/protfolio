@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IIntegratedApi, ILoginCred, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
+import { IEducation, IIntegratedApi, ILoginCred, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
 
 
 const adminAxiosInstance = axios.create({
@@ -121,6 +121,38 @@ export const updateApi = async (Api: IIntegratedApi) => {
 export const deleteApi = async (apiId: string) => {
     try {
         const { data } = await adminAxiosInstance.delete("/integratedApi?apiId=" + apiId);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const addEducation = async (Education: IEducation) => {
+    try {
+        const { Title, Year, details, institution }: IEducation = Education
+        const { data } = await adminAxiosInstance.post("/education", { Title, Year, details, institution });
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+
+export const updateEducation = async (Education: IEducation) => {
+    try {
+        const { data } = await adminAxiosInstance.put("/education", Education);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const deleteEducation = async (educationId: string) => {
+    try {
+        const { data } = await adminAxiosInstance.delete("/education?educationId=" + educationId);
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
