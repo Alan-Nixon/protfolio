@@ -78,6 +78,7 @@ export const getIntegratedApiSchema = async () => {
 };
 
 
+
 export const submitContact = async (contact: IContact) => {
     try {
         const { data } = await userAxiosInstance.post("/submitContact", contact)

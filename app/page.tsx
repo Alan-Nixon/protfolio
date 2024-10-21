@@ -11,8 +11,13 @@ import Experience from "./(componenets)/Experience";
 import Skills from "./(componenets)/Skills";
 import { MainProject, MiniProject } from "./(componenets)/Projects";
 import { useUser } from "./(utils)/customHooks";
+import LoadingPage from "./(componenets)/LoadinPage";
 
 export default function Home() {
+  const { user } = useUser();
+
+  if(!user.name) { return <LoadingPage /> }
+
   return (
     <div className="container mx-auto px-4 relative">
       <ProfileSection />
@@ -30,6 +35,8 @@ export default function Home() {
 
 function ProfileSection() {
   const { user } = useUser();
+  if(!user.name) { return <LoadingPage /> }
+
   return (
     <section className="py-20 text-center">
       <div className="mb-8">

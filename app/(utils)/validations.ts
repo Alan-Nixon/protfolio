@@ -1,4 +1,4 @@
-import { IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
+import { IIntegratedApi, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
 import { Dispatch, SetStateAction } from "react";
 import {
   validateEmail,
@@ -102,17 +102,35 @@ export function validationProject(project: Omit<IProject, "_id"> | IProject, set
   return true
 }
 
-export function validationSkill(skill: Omit<ISkill, "_id">,setError: Dispatch<SetStateAction<string>>) {
-  if(!validateName(skill.title)) {
+export function validationSkill(skill: Omit<ISkill, "_id">, setError: Dispatch<SetStateAction<string>>) {
+  if (!validateName(skill.title)) {
     setError("Enter a valid skill title")
     return false
   }
   if (skill.icon.trim().length < 1) {
-    setError("Enter a valid icon name")    
+    setError("Enter a valid icon name")
     return false
   }
   if (skill.skill.trim().length < 1) {
-    setError("Enter a valid skill")    
+    setError("Enter a valid skill")
+    return false
+  }
+  return true
+}
+
+
+
+export function validationApi(Api: IIntegratedApi, setError: Dispatch<SetStateAction<string>>) {
+  if (!validateName(Api.Title)) {
+    setError("Enter a valid Api title")
+    return false
+  }
+  if (!validateDescription(Api.Description)) {
+    setError("Enter a valid description")
+    return false
+  }
+  if (!validateURL(Api.Docs)) {
+    setError("Enter a valid url to the doc")
     return false
   }
   return true

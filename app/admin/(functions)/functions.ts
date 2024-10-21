@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ILoginCred, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
+import { IIntegratedApi, ILoginCred, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
 
 
 const adminAxiosInstance = axios.create({
@@ -94,5 +94,36 @@ export const deleteSkill = async (skillId: string) => {
     } catch (e) {
         console.error("Error during login request:", e);
         return { status: false, message: e + "", data: null }
+    }
+}
+
+export const addAPI = async (Api: IIntegratedApi) => {
+    try {
+        const { Title, Description, Docs } = Api
+        const { data } = await adminAxiosInstance.post("/integratedApi", { Title, Description, Docs });
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const updateApi = async (Api: IIntegratedApi) => {
+    try {
+        const { data } = await adminAxiosInstance.put("/integratedApi", Api);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const deleteApi = async (apiId: string) => {
+    try {
+        const { data } = await adminAxiosInstance.delete("/integratedApi?apiId=" + apiId);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
     }
 }
