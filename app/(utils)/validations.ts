@@ -1,4 +1,4 @@
-import { IContact, IEducation, IIntegratedApi, IOpenSource, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
+import { IContact, IEducation, IExperience, IIntegratedApi, IOpenSource, IProject, ISkill, IUser } from "@/interfaces_types/interfaces_types";
 import { Dispatch, SetStateAction } from "react";
 import {
   validateEmail,
@@ -184,6 +184,26 @@ export function validationContact(formData: Omit<IContact, "_id" | "createdAt">,
   if (formData.message.trim().length < 10) {
     setError("Enter a valid Message");
     return false;
+  }
+  return true
+}
+
+export function validationExperience(experience: Omit<IExperience, "_id">, setError: Dispatch<SetStateAction<string>>) {
+  if (!validateName(experience.title)) {
+    setError("Enter a valid title")
+    return false
+  }
+  if (!validateName(experience.companyName)) {
+    setError("Enter a valid company name")
+    return false
+  }
+  if (experience.roles.length === 0) {
+    setError("Add minimum one role")
+    return false
+  }
+  if (experience.achievements.length === 0) {
+    setError("Add minimum one achievement")
+    return false
   }
   return true
 }

@@ -12,7 +12,9 @@ import {
   LogOut,
   Menu,
   X,
-  Contact,PackageOpen
+  Contact,
+  PackageOpen,
+  UserRoundPen,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import PrivateComponent from "./PrivateComponent";
@@ -30,6 +32,7 @@ export default function AdminLayout({
     { href: "/admin/projects", label: "Projects", icon: Briefcase },
     { href: "/admin/skills", label: "Skills", icon: Code },
     { href: "/admin/education", label: "Education", icon: Book },
+    { href: "/admin/experience", label: "Experience", icon: UserRoundPen },
     { href: "/admin/integratedApi", label: "Integrated APIs", icon: Database },
     { href: "/admin/openSource", label: "OpenSource", icon: PackageOpen },
     { href: "/admin/contact", label: "Contact", icon: Contact },

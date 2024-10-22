@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IEducation, IIntegratedApi, ILoginCred, IOpenSource, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
+import { IEducation, IExperience, IIntegratedApi, ILoginCred, IOpenSource, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
 
 
 const adminAxiosInstance = axios.create({
@@ -186,6 +186,39 @@ export const updateOpenSource = async (openSource: IOpenSource) => {
 export const deleteOpenSource = async (openSourceId: string) => {
     try {
         const { data } = await adminAxiosInstance.delete("/openSource?openSourceId=" + openSourceId);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+
+
+export const addExperience = async (experience: Omit<IExperience, "_id">) => {
+    try {
+        const { data } = await adminAxiosInstance.post("/experience",experience);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+
+export const updateExperience = async (experience: IExperience) => {
+    try {
+        const { data } = await adminAxiosInstance.put("/experience", experience);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const deleteExperience = async (experienceId: string) => {
+    try {
+        const { data } = await adminAxiosInstance.delete("/experience?experienceId=" + experienceId);
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
