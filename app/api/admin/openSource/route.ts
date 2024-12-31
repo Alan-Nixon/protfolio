@@ -4,7 +4,8 @@ import OpenSourceModel from "@/models/openSource"
 export const POST = async (req: Request) => {
     try {
         const body = await req.json()
-        await OpenSourceModel.insertMany(body)
+        const data = await OpenSourceModel.insertMany(body);
+        console.log(data)
         const res = JSON.stringify({status:true,message:"success"})
         return new Response(res, { status: 200 })
     } catch (error) {

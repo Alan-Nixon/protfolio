@@ -4,7 +4,6 @@ import ExperienceModel from "@/models/experience"
 export const POST = async (req: Request) => {
     try {
         const body = await req.json() 
-        console.log(body)
         const data =  await ExperienceModel.insertMany(body)
         const res = JSON.stringify({ status: true,data:data[0], message: "success" })
         return new Response(res, { status: 200 })

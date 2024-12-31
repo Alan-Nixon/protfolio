@@ -26,7 +26,7 @@ function ClientWrapper({ children }: { children: ReactNode }) {
             <SessionProvider>{children}</SessionProvider>
           </main>
           <footer className="py-6 text-center text-gray-500 border-t border-gray-200">
-            <p>&copy; 2023 YourName. All rights reserved.</p>
+            <p>&copy; 2024 Alan Nixon. All rights reserved.</p>
           </footer>
         </>
       ) : (
