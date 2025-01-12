@@ -32,8 +32,10 @@ export default function Page() {
   const { openId } = useParams();
 
   useEffect(() => {
+    console.log(openId,"this is the openId ")
     if (openId) {
       getSingleOpenSource(openId as string).then(({ data }) => {
+        console.log(data,"this is the data")
         setOpenSource(data);
         getDownloadsGraph(startDate, endDate, data?.title).then(
           (data: IDownloads[]) => {
@@ -43,7 +45,6 @@ export default function Page() {
             }));
             const domain = downloads.reduce(
               (acc, curr) => {
-                console.log(curr, curr.value);
                 acc[0] = Math.min(acc[0], curr.value);
                 acc[1] = Math.max(acc[1], curr.value);
                 return acc;
@@ -52,10 +53,9 @@ export default function Page() {
             );
             setDomain(domain);
 
-            const largestDownload =  domain[1];
-const zero = (intervals.length) + (largestDownload - 4)
+            const largestDownload = domain[1];
+            const zero = intervals.length + (largestDownload - 4);
             const updatedIntervals = new Array(zero > 10 ? 10 : zero).fill(0);
-            console.log(updatedIntervals,intervals.length)
             updatedIntervals[updatedIntervals.length - 1] = Math.ceil(
               largestDownload * 1
             );
@@ -75,7 +75,7 @@ const zero = (intervals.length) + (largestDownload - 4)
               if (index === length - 1) return last;
               return Math.round(first + index * step);
             });
-            console.log(intervalsData);
+            console.log(intervalsData,"this is the intervals data");
             setIntervals(intervalsData);
             setInitialData(downloads as typeof initialData);
           }
@@ -203,9 +203,10 @@ interface ChartContainerProps {
   children: React.ReactNode;
 }
 
-const ChartContainer: React.FC<ChartContainerProps> = ({ children, ...props }) => (
-  <div {...props}>{children}</div>
-);
+const ChartContainer: React.FC<ChartContainerProps> = ({
+  children,
+  ...props
+}) => <div {...props}>{children}</div>;
 
 const ChartTooltip: React.FC<{ content: React.ReactNode }> = ({ content }) => (
   <div className="bg-white p-2 border border-gray-200 rounded shadow">
@@ -219,7 +220,11 @@ interface ChartTooltipContentProps {
   label?: string;
 }
 
-const ChartTooltipContent: React.FC<ChartTooltipContentProps> = ({ active, payload, label }) => {
+const ChartTooltipContent: React.FC<ChartTooltipContentProps> = ({
+  active,
+  payload,
+  label,
+}) => {
   if (active && payload && payload.length) {
     return (
       <div>
@@ -244,7 +249,16 @@ const ReadmeDisplay = ({ packageName }: { packageName: string }) => {
           h3: ({ ...props }) => (
             <h3 className="text-blue-600 font-bold text-xl my-4" {...props} />
           ),
-          code: ({ inline, className, children, ...props }: { inline?: boolean; className?: string; children?: React.ReactNode }) => {
+          code: ({
+            inline,
+            className,
+            children,
+            ...props
+          }: {
+            inline?: boolean;
+            className?: string;
+            children?: React.ReactNode;
+          }) => {
             const match = /language-(\w+)/.exec(className || "");
             return !inline && match ? (
               <SyntaxHighlighter
@@ -261,7 +275,7 @@ const ReadmeDisplay = ({ packageName }: { packageName: string }) => {
               </code>
             );
           },
-          img: ({  ...props }) => (
+          img: ({ ...props }) => (
             <div className="my-4">
               <Image
                 src={props.src || ""}
