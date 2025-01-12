@@ -69,7 +69,7 @@ export const getOpenSource = async () => {
 
 export const getSingleOpenSource = async (openId: string) => {
     try {
-        const { data } = await userAxiosInstance.get("/getSingleOpenSource?openId=" + openId);
+        const { data } = await userAxiosInstance.get("/getOpenSource?openId=" + openId);
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
