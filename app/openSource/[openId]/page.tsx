@@ -34,9 +34,9 @@ export default function Page() {
   useEffect(() => {
     if (openId) {
       getOpenSource().then(({ data }) => {
-        
-        setOpenSource(data.find((item: { _id: string }) => item._id === openId));
-        getDownloadsGraph(startDate, endDate, data?.title).then(
+        const open = data.find((item: { _id: string }) => item._id === openId)
+        setOpenSource(open);
+        getDownloadsGraph(startDate, endDate, open.title).then(
           (data: IDownloads[]) => {
             const downloads = data?.map((item) => ({
               value: item.downloads,
@@ -51,7 +51,6 @@ export default function Page() {
               [0, 0]
             );
             setDomain(domain);
-
             const largestDownload = domain[1];
             const zero = intervals.length + (largestDownload - 4);
             const updatedIntervals = new Array(zero > 5 ? 5 : zero).fill(0);
@@ -74,7 +73,7 @@ export default function Page() {
               if (index === length - 1) return last;
               return Math.round(first + index * step);
             });
-            console.log(intervalsData,"this is the intervals data")
+            console.log(intervalsData,largestDownload,"this is the intervals data")
             setIntervals(intervalsData);
             setInitialData(downloads as typeof initialData);
           }

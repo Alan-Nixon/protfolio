@@ -83,6 +83,7 @@ export const getDownloadsGraph = async (startDate: string, endDate: string, pack
     try {
         const url2 = `https://api.npmjs.org/downloads/range/${startDate}:${endDate}/${packageName}`
         const { data } = await axios.get(url2);
+        console.log(data, packageName)
         return data.downloads;
     } catch (error) {
         console.log(error)
