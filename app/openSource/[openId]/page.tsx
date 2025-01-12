@@ -32,11 +32,11 @@ export default function Page() {
   const { openId } = useParams();
 
   useEffect(() => {
-    console.log(openId,"this is the openId ")
+    console.log(openId, "this is the openId ");
     if (openId) {
       getSingleOpenSource(openId as string).then(({ data }) => {
-        console.log(data,"this is the data")
-        setOpenSource(data);
+        
+        setOpenSource(data.find((item: { _id: string }) => item._id === openId));
         getDownloadsGraph(startDate, endDate, data?.title).then(
           (data: IDownloads[]) => {
             const downloads = data?.map((item) => ({
@@ -75,7 +75,7 @@ export default function Page() {
               if (index === length - 1) return last;
               return Math.round(first + index * step);
             });
-            console.log(intervalsData,"this is the intervals data");
+            console.log(intervalsData, "this is the intervals data");
             setIntervals(intervalsData);
             setInitialData(downloads as typeof initialData);
           }

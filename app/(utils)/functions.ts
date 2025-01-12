@@ -70,7 +70,7 @@ export const getOpenSource = async () => {
 export const getSingleOpenSource = async (openId: string) => {
     try {
         const { data } = await userAxiosInstance.get("/getOpenSource");
-        return data.find((item: { id: string }) => item.id === openId);
+        return data
     } catch (e) {
         console.error("Error during getUser request:", e);
         return { status: false, message: e + "" }
