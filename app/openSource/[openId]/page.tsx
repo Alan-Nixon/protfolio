@@ -35,7 +35,7 @@ export default function Page() {
     if (openId) {
       getSingleOpenSource(openId as string).then(({ data }) => {
         setOpenSource(data);
-        getDownloadsGraph(startDate, endDate, data.title).then(
+        getDownloadsGraph(startDate, endDate, data?.title).then(
           (data: IDownloads[]) => {
             const downloads = data?.map((item) => ({
               value: item.downloads,
@@ -91,7 +91,7 @@ export default function Page() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white rounded-lg shadow-md mb-8 p-6">
-        <h1 className="text-2xl font-bold mb-4">{openSource.title}</h1>
+        <h1 className="text-2xl font-bold mb-4">{openSource?.title}</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div className="space-y-2">
             <label
@@ -187,7 +187,7 @@ export default function Page() {
           {openSource.description}
         </p>
       </div>
-      <ReadmeDisplay packageName={openSource.title} />
+      <ReadmeDisplay packageName={openSource?.title} />
     </div>
   );
 }
