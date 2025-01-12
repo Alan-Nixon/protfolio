@@ -192,11 +192,20 @@ export default function Page() {
   );
 }
 
-const ChartContainer: React.FC<{
-  config: any;
+interface ChartContainerProps {
+  config: {
+    value: {
+      label: string;
+      color: string;
+    };
+  };
   className: string;
   children: React.ReactNode;
-}> = ({ children, ...props }) => <div {...props}>{children}</div>;
+}
+
+const ChartContainer: React.FC<ChartContainerProps> = ({ children, ...props }) => (
+  <div {...props}>{children}</div>
+);
 
 const ChartTooltip: React.FC<{ content: React.ReactNode }> = ({ content }) => (
   <div className="bg-white p-2 border border-gray-200 rounded shadow">
@@ -204,11 +213,13 @@ const ChartTooltip: React.FC<{ content: React.ReactNode }> = ({ content }) => (
   </div>
 );
 
-const ChartTooltipContent: React.FC<{
+interface ChartTooltipContentProps {
   active?: boolean;
-  payload?: any[];
+  payload?: { value: number }[];
   label?: string;
-}> = ({ active, payload, label }) => {
+}
+
+const ChartTooltipContent: React.FC<ChartTooltipContentProps> = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
       <div>
@@ -230,10 +241,10 @@ const ReadmeDisplay = ({ packageName }: { packageName: string }) => {
     <div className=" mx-auto p-6 bg-white rounded-lg shadow-md">
       <ReactMarkdown
         components={{
-          h3: ({ node, ...props }) => (
+          h3: ({ ...props }) => (
             <h3 className="text-blue-600 font-bold text-xl my-4" {...props} />
           ),
-          code: ({ node, inline, className, children, ...props }: any) => {
+          code: ({ inline, className, children, ...props }: { inline?: boolean; className?: string; children?: React.ReactNode }) => {
             const match = /language-(\w+)/.exec(className || "");
             return !inline && match ? (
               <SyntaxHighlighter
@@ -250,7 +261,7 @@ const ReadmeDisplay = ({ packageName }: { packageName: string }) => {
               </code>
             );
           },
-          img: ({ node, ...props }: any) => (
+          img: ({  ...props }) => (
             <div className="my-4">
               <Image
                 src={props.src || ""}

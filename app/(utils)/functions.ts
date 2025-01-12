@@ -83,7 +83,8 @@ export const getReadme = async (packageName: string) => {
         const { data } = await axios.get(url1);
         return data.readme
     } catch (error) {
-
+        console.error("Error during getUser request:", error);
+        return ""
     }
 }
 
