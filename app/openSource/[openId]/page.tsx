@@ -53,8 +53,8 @@ export default function Page() {
             setDomain(domain);
 
             const largestDownload =  domain[1];
-
-            const updatedIntervals = new Array((intervals.length) + (largestDownload - 4)).fill(0);
+const zero = (intervals.length) + (largestDownload - 4)
+            const updatedIntervals = new Array(zero > 10 ? 10 : zero).fill(0);
             console.log(updatedIntervals,intervals.length)
             updatedIntervals[updatedIntervals.length - 1] = Math.ceil(
               largestDownload * 1
