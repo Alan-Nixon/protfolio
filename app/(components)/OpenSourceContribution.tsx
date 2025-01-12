@@ -29,7 +29,7 @@ export default function OpenSourceContribution() {
                 {project.description}
               </p>
               <Link
-                href={project.title}
+                href={project.githubLink + ""}
                 className="text-emerald-700 hover:text-emerald-900 inline-flex items-center"
               >
                 <Github className="mr-2" size={20} />

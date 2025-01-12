@@ -54,7 +54,7 @@ export default function Page() {
 
             const largestDownload = domain[1];
             const zero = intervals.length + (largestDownload - 4);
-            const updatedIntervals = new Array(zero > 10 ? 10 : zero).fill(0);
+            const updatedIntervals = new Array(zero > 5 ? 5 : zero).fill(0);
             updatedIntervals[updatedIntervals.length - 1] = Math.ceil(
               largestDownload * 1
             );
@@ -74,6 +74,7 @@ export default function Page() {
               if (index === length - 1) return last;
               return Math.round(first + index * step);
             });
+            console.log(intervalsData,"this is the intervals data")
             setIntervals(intervalsData);
             setInitialData(downloads as typeof initialData);
           }
