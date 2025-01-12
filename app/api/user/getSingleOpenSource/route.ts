@@ -1,13 +1,14 @@
 import OpenSourceModel from "@/models/openSource";
-import { NextRequest} from 'next/server';
+import { NextRequest } from 'next/server';
 
 
 
 export const GET = async (request: NextRequest) => {
     try {
         const { searchParams } = new URL(request.url);
-        console.log(searchParams.get("openId"));
-        const data = await OpenSourceModel.findOne({ _id: searchParams.get("openId") });
+        const id = searchParams.get("openId");
+        console.log(id)
+        const data = await OpenSourceModel.findById(id);
         const res = { status: true, data, message: "success" };
         return new Response(JSON.stringify(res), { status: 200 });
     } catch (error) {
