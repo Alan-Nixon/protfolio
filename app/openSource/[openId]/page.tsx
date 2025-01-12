@@ -17,7 +17,7 @@ import { useParams } from "next/navigation";
 import {
   getDownloadsGraph,
   getReadme,
-  getSingleOpenSource,
+  getOpenSource,
 } from "@/app/(utils)/functions";
 import { IDownloads, IOpenSource } from "@/interfaces_types/interfaces_types";
 import LoadingPage from "@/app/(components)/LoadingPage";
@@ -32,9 +32,8 @@ export default function Page() {
   const { openId } = useParams();
 
   useEffect(() => {
-    console.log(openId, "this is the openId ");
     if (openId) {
-      getSingleOpenSource(openId as string).then(({ data }) => {
+      getOpenSource().then(({ data }) => {
         
         setOpenSource(data.find((item: { _id: string }) => item._id === openId));
         getDownloadsGraph(startDate, endDate, data?.title).then(
@@ -75,7 +74,6 @@ export default function Page() {
               if (index === length - 1) return last;
               return Math.round(first + index * step);
             });
-            console.log(intervalsData, "this is the intervals data");
             setIntervals(intervalsData);
             setInitialData(downloads as typeof initialData);
           }
