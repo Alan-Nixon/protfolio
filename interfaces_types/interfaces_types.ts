@@ -35,7 +35,11 @@ export interface IProject {
     mainProject: boolean
     technologies: string[]
 }
-
+export interface IDownloads {
+    value: number
+    downloads: number;
+    day: string
+}
 export interface ISkill {
     _id: string;
     title: string;

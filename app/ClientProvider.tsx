@@ -1,8 +1,8 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
 import React, { ReactNode, useEffect, useState } from "react";
-import NavBar from "./(componenets)/NavBar";
-import LoadingPage from "./(componenets)/LoadinPage";
+import NavBar from "./(components)/NavBar";
+import LoadingPage from "./(components)/LoadingPage";
 
 function ClientWrapper({ children }: { children: ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -13,7 +13,7 @@ function ClientWrapper({ children }: { children: ReactNode }) {
     setIsAdmin(adminPath);
     setLoading(false);
   }, []);
-  
+
   if (loading) {
     return <LoadingPage />;
   }
@@ -31,8 +31,8 @@ function ClientWrapper({ children }: { children: ReactNode }) {
         </>
       ) : (
         <main className="flex-grow">
-            <SessionProvider>{children}</SessionProvider>
-          </main>
+          <SessionProvider>{children}</SessionProvider>
+        </main>
       )}
     </>
   );

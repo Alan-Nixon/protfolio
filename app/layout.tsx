@@ -37,6 +37,7 @@ export const metadata = {
   },
 };
 
+
 export default function RootLayout({ children }: layoutProps) {
   return (
     <html lang="en">

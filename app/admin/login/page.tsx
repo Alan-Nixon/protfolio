@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { validateEmail, validatePassword } from "react-values-validator";
 import { signIn, useSession } from "next-auth/react";
-import LoadingPage from "@/app/(componenets)/LoadinPage";
+import LoadingPage from "@/app/(components)/LoadingPage";
 
 export default function AdminLogin() {
   const [credentials, setCredentials] = useState({ Email: "", Password: "" });

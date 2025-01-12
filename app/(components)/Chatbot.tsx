@@ -102,7 +102,7 @@ export default function Chatbot() {
             />
             <button
               type="submit"
-              className="bg-emerald-700 text-white px-4 py-2 rounded-r-md  hover:bg-emerald-800 transition-colors"
+              className="bg-emerald-700 ml-1 mr-1 text-white px-2 py-2 rounded-r-md  hover:bg-emerald-800 transition-colors"
             >
               <Send size={20} />
             </button>

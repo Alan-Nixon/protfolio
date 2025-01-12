@@ -23,16 +23,18 @@ export default function OpenSourceContribution() {
             key={index}
             className="bg-white p-6 mt-1 rounded-lg shadow-md border border-gray-200 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex flex-col"
           >
-            <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-            <p className="text-gray-600 mb-4 flex-grow">
-              {project.description}
-            </p>
-            <Link
-              href={project.title}
-              className="text-emerald-700 hover:text-emerald-900 inline-flex items-center"
-            >
-              <Github className="mr-2" size={20} />
-              View on GitHub
+            <Link href={"openSource/" + project._id}>
+              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+              <p className="text-gray-600 mb-4 flex-grow">
+                {project.description}
+              </p>
+              <Link
+                href={project.title}
+                className="text-emerald-700 hover:text-emerald-900 inline-flex items-center"
+              >
+                <Github className="mr-2" size={20} />
+                View on GitHub
+              </Link>
             </Link>
           </div>
         ))}

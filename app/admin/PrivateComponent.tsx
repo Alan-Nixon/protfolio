@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { layoutProps } from "../../interfaces_types/interfaces_types";
 import { useSession } from "next-auth/react";
-import LoadingPage from "../(componenets)/LoadinPage";
+import LoadingPage from "../(components)/LoadingPage";
 
 function PrivateComponent({ children }: layoutProps) {
   const { data: session, status } = useSession();

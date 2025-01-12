@@ -67,6 +67,37 @@ export const getOpenSource = async () => {
     }
 };
 
+export const getSingleOpenSource = async (openId: string) => {
+    try {
+        const { data } = await userAxiosInstance.get("/getSingleOpenSource?openId=" + openId);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+};
+
+export const getReadme = async (packageName: string) => {
+    try {
+        const url1 = `https://registry.npmjs.org/${packageName}`;
+        const { data } = await axios.get(url1);
+        return data.readme
+    } catch (error) {
+
+    }
+}
+
+export const getDownloadsGraph = async (startDate: string, endDate: string, packageName: string) => {
+    try {
+        const url2 = `https://api.npmjs.org/downloads/range/${startDate}:${endDate}/${packageName}`
+        const { data } = await axios.get(url2);
+        return data.downloads;
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+}
+
 export const getIntegratedApiSchema = async () => {
     try {
         const { data } = await userAxiosInstance.get("/getIntegratedApiSchema");

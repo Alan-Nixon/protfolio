@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import { IProject } from "@/interfaces_types/interfaces_types";
-import LoadingPage from "@/app/(componenets)/LoadinPage";
+import LoadingPage from "@/app/(components)/LoadingPage";
 import { useEffect, useState } from "react";
 import { getProjects } from "@/app/(utils)/functions";
 

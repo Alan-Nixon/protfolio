@@ -3,15 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import Chatbot from "./(componenets)/Chatbot";
-import OpenSourceContribution from "./(componenets)/OpenSourceContribution";
-import IntegratedApi from "./(componenets)/IntegratedApi";
-import Education from "./(componenets)/Education";
-import Experience from "./(componenets)/Experience";
-import Skills from "./(componenets)/Skills";
-import { MainProject, MiniProject } from "./(componenets)/Projects";
+import Chatbot from "./(components)/Chatbot";
+import OpenSourceContribution from "./(components)/OpenSourceContribution";
+import IntegratedApi from "./(components)/IntegratedApi";
+import Education from "./(components)/Education";
+import Experience from "./(components)/Experience";
+import Skills from "./(components)/Skills";
+import { MainProject, MiniProject } from "./(components)/Projects";
 import { textBio, useUser } from "./(utils)/customHooks";
-import LoadingPage from "./(componenets)/LoadinPage";
+import LoadingPage from "./(components)/LoadingPage";
 import { useEffect, useState } from "react";
 
 export default function Home() {
