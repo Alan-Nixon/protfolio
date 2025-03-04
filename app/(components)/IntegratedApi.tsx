@@ -18,7 +18,7 @@ export default function IntegratedApi() {
         {api.map((api) => (
           <div
             key={api._id}
-            className="bg-white p-6 rounded-lg shadow-md border border-gray-200"
+            className="transition-transform duration-300 hover:scale-105 bg-white p-6 rounded-lg shadow-md border border-gray-200"
           >
             <h3 className="text-xl font-semibold mb-2">{api.Title} API</h3>
             <p className="text-gray-600">{api.Description}</p>

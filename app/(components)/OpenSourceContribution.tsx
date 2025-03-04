@@ -21,7 +21,7 @@ export default function OpenSourceContribution() {
         {openSource.map((project, index) => (
           <div
             key={index}
-            className="bg-white p-6 mt-1 rounded-lg shadow-md border border-gray-200 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex flex-col"
+            className="transition-transform duration-300 hover:scale-105 bg-white p-6 mt-1 rounded-lg shadow-md border border-gray-200 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex flex-col"
           >
             <Link href={"openSource/" + project._id}>
               <h3 className="text-xl font-semibold mb-2">{project.title}</h3>

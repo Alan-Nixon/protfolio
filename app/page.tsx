@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import Chatbot from "./(components)/Chatbot";
 import OpenSourceContribution from "./(components)/OpenSourceContribution";
 import IntegratedApi from "./(components)/IntegratedApi";
@@ -17,7 +17,9 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const { user } = useUser();
 
-  if(!user.name) { return <LoadingPage /> }
+  if (!user.name) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="container mx-auto px-4 relative">
@@ -36,24 +38,25 @@ export default function Home() {
 
 function ProfileSection() {
   const { user } = useUser();
-  const [text,setText] = useState("");
-  
+  const [text, setText] = useState("");
+
   useEffect(() => {
     let currentIndex = 0;
     const intervalId = setInterval(() => {
       if (currentIndex < textBio.length) {
-        setText(prev => prev + ' ' + (textBio[currentIndex] || ""));
+        setText((prev) => prev + " " + (textBio[currentIndex] || ""));
         currentIndex++;
       } else {
         clearInterval(intervalId);
       }
-    }, 100); 
+    }, 100);
 
-    return () => clearInterval(intervalId); 
+    return () => clearInterval(intervalId);
   }, []);
 
-
-  if(!user.name) { return <LoadingPage /> }
+  if (!user.name) {
+    return <LoadingPage />;
+  }
 
   return (
     <section className="py-20 text-center">
@@ -74,6 +77,9 @@ function ProfileSection() {
         Hi, I&apos;m <span className="text-emerald-700">{user.name}</span>
       </h1>
       <p className="text-xl mb-8 text-gray-600 reveal">{user.bio}</p>
+      <Link href="../alan_nixon_resume.pdf"
+      className="bg-cyan-700 reveal mr-2 text-white px-6 py-3 rounded-full hover:bg-cyan-800 transition-colors inline-flex items-center"
+      > Download Resume <Download className="ml-2" /> </Link>
       <Link
         href="/contact"
         className="bg-emerald-700 reveal text-white px-6 py-3 rounded-full hover:bg-emerald-800 transition-colors inline-flex items-center"

@@ -17,9 +17,9 @@ export function MainProject() {
       <h2 className="text-3xl font-bold mb-8 text-center">Main Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {project.map((item) => (
-          <div
+          <div 
             key={item._id}
-            className="bg-white rounded-lg overflow-hidden shadow-lg border border-gray-200"
+            className="transition-transform duration-300 hover:scale-105 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-200"
           >
             <img
               src={item.projectImage}
@@ -57,7 +57,7 @@ export function MiniProject() {
         {project.map((item) => (
           <div
             key={item._id}
-            className="bg-white p-6 rounded-lg shadow-md border border-gray-200"
+            className="transition-transform duration-300 hover:scale-105 bg-white p-6 rounded-lg shadow-md border border-gray-200"
           >
             <h3 className="text-xl font-semibold mb-2">{item.Title}</h3>
             <p className="text-gray-600 mb-4">{item.description} </p>

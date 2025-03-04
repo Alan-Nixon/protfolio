@@ -26,7 +26,7 @@ export default function Skills() {
           return (
             <div
               key={Item._id}
-              className="p-6 ml-2 bg-white rounded-lg shadow-md border border-gray-200"
+              className="transition-transform duration-300 hover:scale-105 p-6 ml-2 bg-white rounded-lg shadow-md border border-gray-200"
             >
               {iconLibrary[Item.icon as keyof typeof iconLibrary]}
               <h3 className="text-xl font-semibold mb-2">{Item.title}</h3>
