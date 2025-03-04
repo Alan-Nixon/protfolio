@@ -5,9 +5,17 @@ import { IProject } from "@/interfaces_types/interfaces_types";
 import LoadingPage from "@/app/(components)/LoadingPage";
 import { useEffect, useState } from "react";
 import { getProjects } from "@/app/(utils)/functions";
+import ImageSlider from "@/app/(components)/image-slider";
 
-export default function ProjectDetail({ params }: { params: { productId: string } }) {
+export default function ProjectDetail({
+  params,
+}: {
+  params: { productId: string };
+}) {
   const [data, setData] = useState<IProject>();
+  const [isSliderOpen, setIsSliderOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   useEffect(() => {
     getProjects().then(({ data }) => {
       const project = [...data.mainProjects, ...data.miniProjects].find(
@@ -20,6 +28,11 @@ export default function ProjectDetail({ params }: { params: { productId: string 
   if (!data) {
     return <LoadingPage />;
   }
+
+  const openSlider = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsSliderOpen(true);
+  };
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -79,20 +92,20 @@ export default function ProjectDetail({ params }: { params: { productId: string 
           <img
             key={index}
             src={image}
+            onClick={() => openSlider(index)}
             alt={`${data.Title} screenshot ${index + 1}`}
-            className="w-full h-auto rounded-lg shadow-md"
+            className="transition-transform duration-300 hover:scale-105 cursor-pointer w-full h-auto rounded-lg shadow-md"
           />
         ))}
       </div>
-
+      <ImageSlider
+        images={data.images}
+        initialIndex={currentImageIndex}
+        isOpen={isSliderOpen}
+        onClose={() => setIsSliderOpen(false)}
+      />
       <h2 className="text-2xl font-bold mb-4">Project Demo Video</h2>
       <div className="aspect-w-16 aspect-h-9 mb-12 bg-gray-800 p-3 max-w-[750px]">
-        {/* <iframe
-          src={data.videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="w-full h-full rounded-lg shadow-md"
-        ></iframe> */}
         <video src={data.videoUrl} controls autoPlay className="w-full" />
       </div>
     </div>
