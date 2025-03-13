@@ -1,8 +1,9 @@
 import "./globals.css";
-import '../mongodbConnect/database'
+import "../mongodbConnect/database";
 import { Inter } from "next/font/google";
 import { layoutProps } from "../interfaces_types/interfaces_types";
 import ClientWrapper from "./ClientProvider";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,10 +38,15 @@ export const metadata = {
   },
 };
 
-
 export default function RootLayout({ children }: layoutProps) {
   return (
     <html lang="en">
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="oczS7ejkFQaDtfQbHV2i7ny8A3D10jv3P8MLcwLbEiY"
+        />
+      </Head>
       <body
         className={`${inter.className} bg-white text-gray-900 min-h-screen flex flex-col`}
       >
