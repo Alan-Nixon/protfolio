@@ -3,7 +3,6 @@ import "../mongodbConnect/database";
 import { Inter } from "next/font/google";
 import { layoutProps } from "../interfaces_types/interfaces_types";
 import ClientWrapper from "./ClientProvider";
-// import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
