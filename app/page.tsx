@@ -49,7 +49,7 @@ function ProfileSection() {
       } else {
         clearInterval(intervalId);
       }
-    }, 100);
+    }, 90);
     return () => clearInterval(intervalId);
   }, []);
 
