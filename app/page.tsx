@@ -13,6 +13,7 @@ import { MainProject, MiniProject } from "./(components)/Projects";
 import { textBio, useUser } from "./(utils)/customHooks";
 import LoadingPage from "./(components)/LoadingPage";
 import { useEffect, useState } from "react";
+import { IUser } from "@/interfaces_types/interfaces_types";
 
 export default function Home() {
   const { user } = useUser();
@@ -23,7 +24,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 relative">
-      <ProfileSection />
+      <ProfileSection user={user} />
       <MainProject />
       <MiniProject />
       <Skills />
@@ -36,8 +37,7 @@ export default function Home() {
   );
 }
 
-function ProfileSection() {
-  const { user } = useUser();
+function ProfileSection({ user }: { user: IUser }) {
   const [text, setText] = useState("");
 
   useEffect(() => {
@@ -52,11 +52,6 @@ function ProfileSection() {
     }, 90);
     return () => clearInterval(intervalId);
   }, []);
-
-  if (!user.name) {
-    return <LoadingPage />;
-  }
-  console.log(user);
 
   return (
     <section className="py-20 text-center">
@@ -81,16 +76,14 @@ function ProfileSection() {
       <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-8">
         <Link
           href="../alan_nixon_resume.pdf"
-          className=" w-full sm:w-auto bg-cyan-700 reveal text-white px-6 py-3 rounded-full 
-                   hover:bg-cyan-800 transition-colors flex items-center justify-center"
+          className=" w-full sm:w-auto bg-cyan-700 reveal text-white px-6 py-3 rounded-full hover:bg-cyan-800 transition-colors flex items-center justify-center"
         >
           Download Resume <Download className="ml-2" />
         </Link>
 
         <Link
           href="/contact"
-          className=" w-full sm:w-auto bg-emerald-700 reveal text-white px-6 py-3 rounded-full 
-                   hover:bg-emerald-800 transition-colors flex items-center justify-center"
+          className=" w-full sm:w-auto bg-emerald-700 reveal text-white px-6 py-3 rounded-full hover:bg-emerald-800 transition-colors flex items-center justify-center"
         >
           Get in touch <ArrowRight className="ml-2" />
         </Link>
