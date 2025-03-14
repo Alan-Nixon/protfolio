@@ -44,7 +44,7 @@ export const metadata = {
 export default function RootLayout({ children }: layoutProps) {
   return ( 
     <html lang="en">
-      
+       
       <body
         className={`${inter.className} bg-white text-gray-900 min-h-screen flex flex-col`}
       >

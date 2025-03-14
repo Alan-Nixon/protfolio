@@ -3,6 +3,7 @@ import { SessionProvider } from "next-auth/react";
 import React, { ReactNode, useEffect, useState } from "react";
 import NavBar from "./(components)/NavBar";
 import LoadingPage from "./(components)/LoadingPage";
+import { Toaster } from "react-hot-toast";
 
 function ClientWrapper({ children }: { children: ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -19,6 +20,7 @@ function ClientWrapper({ children }: { children: ReactNode }) {
   }
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       {!isAdmin ? (
         <>
           <NavBar />

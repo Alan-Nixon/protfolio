@@ -7,6 +7,7 @@ import { useUser } from "../(utils)/customHooks";
 import { IContact } from "@/interfaces_types/interfaces_types";
 import { submitContact } from "../(utils)/functions";
 import { validationContact } from "../(utils)/validations";
+import toast from "react-hot-toast";
 
 export default function Contact() {
   const { user } = useUser();
@@ -31,6 +32,7 @@ export default function Contact() {
     e.preventDefault();
     if (validationContact(formData, setError)) {
       submitContact(formData).then(() => {
+        toast.success("Message sent successfully");
         setFormData(emptyContact);
       });
     }
