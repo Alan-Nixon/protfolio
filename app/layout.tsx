@@ -7,8 +7,8 @@ import ClientWrapper from "./ClientProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Alan Nixon",
-  description: "Showcase of my work and skills as a developer",
+  title: "Alan Nixon | Software Engineer | Full Stack Developer & MERN Freelancer",
+  description: "Alan Nixon - A skilled MERN Stack Developer, Software Engineer, and Freelancer. Specializing in modern web development, React, Node.js, and scalable applications.",
   verification: {
     google: "oczS7ejkFQaDtfQbHV2i7ny8A3D10jv3P8MLcwLbEiY", 
   },
@@ -17,8 +17,8 @@ export const metadata = {
     apple: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729344482/protfolio/ewnsnr13wxpa8ethsaod.jpg",
   },
   openGraph: {
-    title: "Alan Nixon - Developer Portfolio",
-    description: "Showcase of my work and skills as a developer",
+    title: "Alan Nixon | Software Engineer | Full Stack Developer & MERN Freelancer",
+    description: "Explore Alan Nixon's portfolio – a highly skilled Full Stack Developer and MERN expert, building scalable web applications using React, Node.js, Express, and MongoDB.",
     url: "https://alan-nixon.vercel.app",
     siteName: "Alan Nixon Portfolio",
     images: [
@@ -34,11 +34,12 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alan Nixon - Developer Portfolio",
-    description: "Showcase of my work and skills as a developer",
+    title: "Alan Nixon | Software Engineer | Full Stack Developer & MERN Freelancer",
+    description: "Explore Alan Nixon's portfolio – a highly skilled Full Stack Developer and MERN expert, building scalable web applications using React, Node.js, Express, and MongoDB.",
     images: ["https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729344482/protfolio/ewnsnr13wxpa8ethsaod.jpg"],
   },
 };
+
 
 
 export default function RootLayout({ children }: layoutProps) {
