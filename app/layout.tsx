@@ -17,7 +17,7 @@ export const metadata = {
     apple: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729344482/protfolio/ewnsnr13wxpa8ethsaod.jpg",
   },
   openGraph: {
-    title: "Alan Nixon | Software Engineer | Full Stack Developer & MERN Freelancer",
+    title: "Alan Nixon - Software Engineer & MERN Freelancer",
     description: "Explore Alan Nixon's portfolio – a highly skilled Full Stack Developer and MERN expert, building scalable web applications using React, Node.js, Express, and MongoDB.",
     url: "https://alan-nixon.vercel.app",
     siteName: "Alan Nixon Portfolio",
@@ -34,7 +34,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alan Nixon | Software Engineer | Full Stack Developer & MERN Freelancer",
+    title: "Alan Nixon - Software Engineer & MERN Freelancer",
     description: "Explore Alan Nixon's portfolio – a highly skilled Full Stack Developer and MERN expert, building scalable web applications using React, Node.js, Express, and MongoDB.",
     images: ["https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729344482/protfolio/ewnsnr13wxpa8ethsaod.jpg"],
   },
