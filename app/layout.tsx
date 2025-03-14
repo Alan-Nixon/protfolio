@@ -13,7 +13,7 @@ export const metadata = {
     google: "oczS7ejkFQaDtfQbHV2i7ny8A3D10jv3P8MLcwLbEiY", 
   },
   icons: {
-    icon: "./favicon_io/favicon.ico",
+    icon: "./favicon.ico",
     apple: "https://res.cloudinary.com/dyh7c1wtm/image/upload/v1729344482/protfolio/ewnsnr13wxpa8ethsaod.jpg",
   },
   openGraph: {
