@@ -7,7 +7,7 @@ import ClientWrapper from "./ClientProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Alan Nixon | Software Engineer | Full Stack Developer & MERN Freelancer",
+  title: "Alan Nixon - Software Engineer & MERN Freelancer",
   description: "Alan Nixon - A skilled MERN Stack Developer, Software Engineer, and Freelancer. Specializing in modern web development, React, Node.js, and scalable applications.",
   verification: {
     google: "oczS7ejkFQaDtfQbHV2i7ny8A3D10jv3P8MLcwLbEiY", 
