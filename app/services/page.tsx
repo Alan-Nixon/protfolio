@@ -98,13 +98,13 @@ export default function ServicesPage() {
               combines technical expertise with creative problem-solving.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              Whether you're starting from scratch or upgrading existing systems, 
-              I'm here to ensure your digital success with tailored solutions that 
+              Whether you&apos;re starting from scratch or upgrading existing systems, 
+              I&apos;m here to ensure your digital success with tailored solutions that 
               evolve with your business needs.
             </p>
           </div>
         </motion.div>
-
+ 
         {/* Stats Section */}
         <motion.div 
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
@@ -167,7 +167,7 @@ export default function ServicesPage() {
             Ready to Start Your Project?
           </h2>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Let's discuss how I can help bring your ideas to life. I'm committed to delivering
+            Let&apos;s discuss how I can help bring your ideas to life. I&apos;m committed to delivering
             high-quality solutions that meet your specific needs.
           </p>
           <motion.a

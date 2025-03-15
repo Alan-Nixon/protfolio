@@ -5,6 +5,7 @@ import { Plus, Edit, Trash, X } from "lucide-react";
 import { IProject } from "@/interfaces_types/interfaces_types";
 import { getProjects } from "@/app/(utils)/functions";
 import { validationProject } from "@/app/(utils)/validations";
+import Image from "next/image";
 import {
   AddProject,
   deleteProject,
@@ -67,7 +68,7 @@ export default function ProjectsPage() {
           item._id === editingId ? projectWithId : item
         );
         setProjects(updatedProjects);
-        setNewProject(emptyProject)
+        setNewProject(emptyProject);
         setEditingId("");
       });
     }
@@ -156,11 +157,14 @@ export default function ProjectsPage() {
         .map((project) => (
           <div key={project._id} className="bg-white p-6 rounded-lg shadow">
             <div className="flex flex-col md:flex-row md:items-center mb-4">
-              <img
+              <Image
                 src={project.projectImage}
                 alt={project.Title}
+                width={192}
+                height={128}
                 className="w-full md:w-48 h-32 object-cover rounded mr-4 mb-4 md:mb-0"
               />
+
               <div>
                 <h3 className="text-xl font-semibold">{project.Title}</h3>
                 <p className="text-gray-600 mt-2">{project.description}</p>
@@ -355,7 +359,7 @@ export default function ProjectsPage() {
             />
           </div>
         </div>
-        
+
         <div className="mt-4">
           <label
             htmlFor="images"
@@ -374,9 +378,11 @@ export default function ProjectsPage() {
           <div className="mt-2 flex flex-wrap gap-2">
             {newProject.images.map((image, index) => (
               <div key={index} className="relative">
-                <img
+                <Image
                   src={image}
                   alt={`Additional ${index + 1}`}
+                  width={96}
+                  height={96}
                   className="w-24 h-24 object-cover rounded"
                 />
                 <button

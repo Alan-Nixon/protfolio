@@ -7,64 +7,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getDocument } from "../admin/(functions)/functions";
 
-const data: IDocumentation[] = [
-  {
-    _id: "1",
-    title: "Getting Started with React",
-    description:
-      "A comprehensive guide to setting up your first React application with best practices and modern tooling...",
-    image: "/doc-react.jpg",
-    url: "/documentation/react-getting-started",
-  },
-  {
-    _id: "2",
-    title: "Next.js API Routes",
-    description:
-      "Learn how to create and use API routes in Next.js to build serverless functions and backend services...",
-    image: "/doc-nextjs.jpg",
-    url: "/documentation/nextjs-api-routes",
-  },
-  {
-    _id: "3",
-    title: "Tailwind CSS Configuration",
-    description:
-      "Customize your Tailwind CSS setup for optimal performance and design consistency across your projects...",
-    image: "/doc-tailwind.jpg",
-    url: "/documentation/tailwind-configuration",
-  },
-  {
-    _id: "4",
-    title: "TypeScript Best Practices",
-    description:
-      "Improve your TypeScript code with these best practices for type safety, interfaces, and advanced patterns...",
-    image: "/doc-typescript.jpg",
-    url: "/documentation/typescript-best-practices",
-  },
-  {
-    _id: "5",
-    title: "State Management with Redux",
-    description:
-      "Master global state management using Redux and Redux Toolkit in your React applications...",
-    image: "/doc-redux.jpg",
-    url: "/documentation/redux-state-management",
-  },
-  {
-    _id: "6",
-    title: "Responsive Design Principles",
-    description:
-      "Essential principles and techniques for creating truly responsive web designs that work on all devices...",
-    image: "/doc-responsive.jpg",
-    url: "/documentation/responsive-design",
-  },
-  {
-    _id: "7",
-    title: "Authentication with JWT",
-    description:
-      "Implement secure authentication in your web applications using JSON Web Tokens (JWT)...",
-    image: "/doc-jwt.jpg",
-    url: "/documentation/jwt-authentication",
-  },
-];
 
 export default function DocumentationPage() {
   const [documentations, setDocumentations] = useState<IDocumentation[]>([]);

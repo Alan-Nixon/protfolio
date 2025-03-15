@@ -21,7 +21,7 @@ export default function AdminLogin() {
         setLoading(false);
       }
     }
-  }, [session, status]);
+  }, [session, status, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

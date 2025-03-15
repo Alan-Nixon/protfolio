@@ -5,7 +5,8 @@ import { IProject } from "@/interfaces_types/interfaces_types";
 import LoadingPage from "@/app/(components)/LoadingPage";
 import { useEffect, useState } from "react";
 import { getProjects } from "@/app/(utils)/functions";
-import ImageSlider from "@/app/(components)/image-slider";
+import ImageSlider from "@/app/(components)/Image-slider";
+import Image from "next/image";
 
 export default function ProjectDetail({
   params,
@@ -23,7 +24,7 @@ export default function ProjectDetail({
       );
       setData(project);
     });
-  }, []);
+  }, [params.productId]);
 
   if (!data) {
     return <LoadingPage />;
@@ -78,10 +79,13 @@ export default function ProjectDetail({
           </div>
         </div>
         <div>
-          <img
+          <Image
             src={data.projectImage}
             alt={data.Title}
+            width={800}
+            height={500}
             className="w-full h-auto rounded-lg shadow-md"
+            style={{ objectFit: "cover" }}
           />
         </div>
       </div>
@@ -89,12 +93,15 @@ export default function ProjectDetail({
       <h2 className="text-2xl font-bold mb-4">Project Gallery</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
         {data.images.map((image, index) => (
-          <img
+          <Image
             key={index}
             src={image}
             onClick={() => openSlider(index)}
             alt={`${data.Title} screenshot ${index + 1}`}
+            width={800}
+            height={500}
             className="transition-transform duration-300 hover:scale-105 cursor-pointer w-full h-auto rounded-lg shadow-md"
+            style={{ objectFit: "cover" }}
           />
         ))}
       </div>

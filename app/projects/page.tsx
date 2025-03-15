@@ -3,6 +3,8 @@ import Link from "next/link";
 import { IProject } from "../../interfaces_types/interfaces_types";
 import { useEffect, useState } from "react";
 import { getProjects } from "../(utils)/functions";
+import Image from "next/image";
+
 
 export default function Projects() {
   const [projects, setProjects] = useState<IProject[]>([]);
@@ -22,11 +24,14 @@ export default function Projects() {
             key={project._id}
             className="bg-white rounded-lg overflow-hidden shadow-lg border border-gray-200"
           >
-            <img
+            <Image
               src={project.projectImage}
               alt={project.Title}
+              width={400}
+              height={192}  
               className="w-full h-48 object-cover"
             />
+
             <div className="p-6">
               <h2 className="text-xl font-semibold mb-2">{project.Title}</h2>
               <p className="text-gray-600 mb-4">{project.description}</p>

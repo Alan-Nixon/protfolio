@@ -6,6 +6,7 @@ import { IUser } from "@/interfaces_types/interfaces_types";
 import { getUser } from "@/app/(utils)/functions";
 import { changeProfile } from "../(functions)/functions";
 import { profileValidations } from "@/app/(utils)/validations";
+import Image from "next/image";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<IUser>({
@@ -66,11 +67,14 @@ export default function ProfilePage() {
         <div className="mb-6 flex items-center">
           <div className="mr-4">
             {profile.profileImage ? (
-              <img
-                src={profile.profileImage}
-                alt="Profile"
-                className="w-24 h-24 rounded-full object-cover"
-              />
+              <Image
+              src={profile.profileImage}
+              alt="Profile"
+              width={96}
+              height={96}
+              className="w-24 h-24 rounded-full object-cover"
+            />
+            
             ) : (
               <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
                 <User size={48} className="text-gray-400" />

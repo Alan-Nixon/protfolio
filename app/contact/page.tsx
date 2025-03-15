@@ -8,6 +8,8 @@ import { IContact } from "@/interfaces_types/interfaces_types";
 import { submitContact } from "../(utils)/functions";
 import { validationContact } from "../(utils)/validations";
 import toast from "react-hot-toast";
+import Image from "next/image";
+
 
 export default function Contact() {
   const { user } = useUser();
@@ -44,11 +46,14 @@ export default function Contact() {
         <div>
           <h1 className="text-4xl font-bold mb-8">Get in Touch</h1>
           <div className="mb-8">
-            <img
-              src={user.profileImage}
-              alt="Your Name"
-              className="rounded-full w-48 h-48 object-cover mx-auto md:mx-0"
-            />
+          <Image
+  src={user.profileImage}
+  alt="Your Name"
+  width={192} 
+  height={192} 
+  className="rounded-full w-48 h-48 object-cover mx-auto md:mx-0"
+/>
+
           </div>
           <div className="flex flex-wrap gap-4 mb-8">
             <a

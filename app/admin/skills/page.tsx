@@ -1,8 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { Cable, Edit, Trash } from "lucide-react";
-import { Code, Database, Server } from "lucide-react";
+import { Edit, Trash } from "lucide-react";
 import { ISkill } from "@/interfaces_types/interfaces_types";
 import { getSkills } from "@/app/(utils)/functions";
 import { addSkill, deleteSkill, updateSkill } from "../(functions)/functions";

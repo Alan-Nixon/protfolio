@@ -11,6 +11,7 @@ import {
   Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface ImageSliderProps {
   images: string[];
@@ -20,7 +21,7 @@ interface ImageSliderProps {
 }
 
 export default function ImageSlider({
-  images = [],  
+  images = [],
   initialIndex = 0,
   isOpen,
   onClose,
@@ -183,15 +184,17 @@ export default function ImageSlider({
           cursor: isDragging ? "grabbing" : zoomLevel > 1 ? "grab" : "default",
         }}
       >
-        <img
+        <Image
           src={currentImage || "/placeholder.svg"}
           alt={`Image ${safeIndex + 1}`}
+          width={800}
+          height={600}
           className="max-h-[80vh] max-w-[80vw] object-contain transition-transform duration-200"
           style={{
             transform: `translate(${position.x}px, ${position.y}px) scale(${zoomLevel}) rotate(${rotation}deg)`,
             transformOrigin: "center center",
           }}
-          draggable="false"
+          draggable={false}
         />
       </div>
 

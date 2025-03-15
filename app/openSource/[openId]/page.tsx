@@ -34,7 +34,7 @@ export default function Page() {
   useEffect(() => {
     if (openId) {
       getOpenSource().then(({ data }) => {
-        const open = data.find((item: { _id: string }) => item._id === openId)
+        const open = data.find((item: { _id: string }) => item._id === openId);
         setOpenSource(open);
         getDownloadsGraph(startDate, endDate, open.title).then(
           (data: IDownloads[]) => {
@@ -72,15 +72,14 @@ export default function Page() {
               if (index === 0) return first;
               if (index === length - 1) return last;
               return Math.round(first + index * step);
-            });
-            console.log(intervalsData,largestDownload,"this is the intervals data")
+            }); 
             setIntervals(intervalsData);
             setInitialData(downloads as typeof initialData);
           }
         );
       });
     }
-  }, [openId, startDate, endDate]);
+  }, [openId, startDate, endDate, intervals.length]);
 
   if (!openSource) {
     return <LoadingPage />;
@@ -238,7 +237,7 @@ const ReadmeDisplay = ({ packageName }: { packageName: string }) => {
   const [readme, setReadme] = useState("");
   useEffect(() => {
     getReadme(packageName).then((data) => setReadme(data));
-  }, []);
+  }, [packageName]);
 
   return (
     <div className=" mx-auto p-6 bg-white rounded-lg shadow-md">
