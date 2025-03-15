@@ -7,14 +7,9 @@ cloudinary.config({
 });
 
 
-export const deleteImage = async (imageUrl: string) => {
+export const deleteImage = async (imageUrl: string, folderName: string) => {
     try {
-        
-        const parts = imageUrl.split('/');
-        const folder = parts.slice(-2)[0]; 
-        const fileName = parts.slice(-1)[0].split('.')[0]; 
-        const publicId = `${folder}/${fileName}`; 
-
+        const publicId = `${folderName}/${imageUrl.split('/').pop()?.split('.')[0]}`;
         const result = await cloudinary.uploader.destroy(publicId);
         if (result.result !== 'ok') {
             console.log(`Failed to delete image. Cloudinary response: ${result.result}`, result);
@@ -29,7 +24,7 @@ export const deleteImage = async (imageUrl: string) => {
 
 
 
-export const uploadImage = async (base64Image: string,folder:string) => {
+export const uploadImage = async (base64Image: string, folder: string) => {
     const result = await cloudinary.uploader.upload(base64Image, { folder });
     console.log(result.secure_url)
     return result.secure_url;

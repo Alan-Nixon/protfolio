@@ -1,15 +1,14 @@
-import { existsSync, readFileSync } from 'fs'
-import { join } from 'path'
 import { compare } from "bcrypt"
-import { BSON } from 'bson'
-const { deserialize } = BSON
+import AdminModel from '@/models/admin'
 
 export const POST = async (req: Request) => {
     try {
+
         const { Email, Password } = await req.json();
-        const filePath = join(process.cwd(), 'public', 'admin.bson');
-        if (!existsSync(filePath)) { throw new Error(`File not found: ${filePath}`) }
-        const data = deserialize(readFileSync(filePath))
+        const data = await AdminModel.findOne({ Email });
+        console.log(data);
+        if (!data) { return new Response("User not found", { status: 400 }) }
+
         if (data.Email !== Email) {
             const res = JSON.stringify({ status: false, message: "Email doesn't match" })
             return new Response(res, { status: 200 });

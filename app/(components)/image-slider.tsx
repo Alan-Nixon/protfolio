@@ -20,7 +20,7 @@ interface ImageSliderProps {
 }
 
 export default function ImageSlider({
-  images = [], // Provide default empty array to prevent undefined
+  images = [],  
   initialIndex = 0,
   isOpen,
   onClose,

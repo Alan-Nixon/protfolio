@@ -7,6 +7,7 @@ import {
   Book,
   Briefcase,
   Code,
+  Dock,
   Database,
   User,
   LogOut,
@@ -34,6 +35,7 @@ export default function AdminLayout({
     { href: "/admin/education", label: "Education", icon: Book },
     { href: "/admin/experience", label: "Experience", icon: UserRoundPen },
     { href: "/admin/integratedApi", label: "Integrated APIs", icon: Database },
+    { href: "/admin/documentation", label: "Documentation", icon: Dock },
     { href: "/admin/openSource", label: "OpenSource", icon: PackageOpen },
     { href: "/admin/contact", label: "Contact", icon: Contact },
   ];

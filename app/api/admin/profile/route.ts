@@ -20,8 +20,8 @@ export const PATCH = async (req: Request) => {
         const body = await req.json();
         const user = await UserModel.findById(body._id);
         if (body.profileImage.startsWith("data:image")) {
-            body.profileImage = await uploadImage(body.profileImage,"protfolio")
-            await deleteImage(user.profileImage)
+            body.profileImage = await uploadImage(body.profileImage, "protfolio")
+            await deleteImage(user.profileImage, "protfolio")
         }
         const data = await UserModel.findByIdAndUpdate(body._id, body);
         const res = JSON.stringify({ status: true, data, message: "success" })

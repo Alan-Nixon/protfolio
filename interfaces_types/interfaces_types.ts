@@ -46,7 +46,13 @@ export interface ISkill {
     icon: string;
     skill: string;
 }
-
+export interface IDocumentation {
+    _id: string;
+    title: string;
+    image: string
+    description: string;
+    url: string
+}
 
 export interface IExperience {
     _id: string

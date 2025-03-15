@@ -18,6 +18,18 @@ function NavBar() {
             Home
           </Link>
           <Link
+            href="/services"
+            className="hover:text-emerald-700 transition-colors"
+          >
+            Services
+          </Link>
+          <Link
+            href="/documentation"
+            className="hover:text-emerald-700 transition-colors"
+          >
+            Documentations
+          </Link>
+          <Link
             href="/projects"
             className="hover:text-emerald-700 transition-colors"
           >

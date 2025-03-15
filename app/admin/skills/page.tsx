@@ -7,6 +7,7 @@ import { ISkill } from "@/interfaces_types/interfaces_types";
 import { getSkills } from "@/app/(utils)/functions";
 import { addSkill, deleteSkill, updateSkill } from "../(functions)/functions";
 import { validationSkill } from "@/app/(utils)/validations";
+import { iconLibrary } from "@/app/(utils)/utils";
 
 export default function SkillsPage() {
   const [skills, setSkills] = useState<ISkill[]>([]);
@@ -22,13 +23,6 @@ export default function SkillsPage() {
   useEffect(() => {
     getSkills().then(({ data }) => setSkills(data));
   }, []);
-
-  const iconLibrary = {
-    Code: <Code size={48} className="mx-auto mb-4 text-emerald-700" />,
-    Database: <Database size={48} className="mx-auto mb-4 text-emerald-700" />,
-    Server: <Server size={48} className="mx-auto mb-4 text-emerald-700" />,
-    Cable: <Cable size={48} className="mx-auto mb-4 text-emerald-700" />,
-  };
 
   const handleAddSkill = (e: React.FormEvent) => {
     e.preventDefault();

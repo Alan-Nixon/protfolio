@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IEducation, IExperience, IIntegratedApi, ILoginCred, IOpenSource, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
+import { IDocumentation, IEducation, IExperience, IIntegratedApi, ILoginCred, IOpenSource, IProject, ISkill, IUser } from '../../../interfaces_types/interfaces_types';
 
 
 const adminAxiosInstance = axios.create({
@@ -139,7 +139,6 @@ export const addEducation = async (Education: IEducation) => {
     }
 }
 
-
 export const updateEducation = async (Education: IEducation) => {
     try {
         const { data } = await adminAxiosInstance.put("/education", Education);
@@ -219,6 +218,46 @@ export const updateExperience = async (experience: IExperience) => {
 export const deleteExperience = async (experienceId: string) => {
     try {
         const { data } = await adminAxiosInstance.delete("/experience?experienceId=" + experienceId);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const addDocument = async (document: IDocumentation) => {
+    try {
+        const { data } = await adminAxiosInstance.post("/document", document);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const updateDocument = async (document: IDocumentation) => {
+    try {
+        const { data } = await adminAxiosInstance.put("/document", document);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const deleteDocument = async (documentId: string) => {
+    try {
+        const { data } = await adminAxiosInstance.delete("/document?documentId=" + documentId);
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
+
+export const getDocument = async() =>  {
+    try {
+        const { data } = await adminAxiosInstance.get("/document");
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
