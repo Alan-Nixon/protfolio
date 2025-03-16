@@ -7,13 +7,15 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getDocument } from "../admin/(functions)/functions";
 
-
 export default function DocumentationPage() {
   const [documentations, setDocumentations] = useState<IDocumentation[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getDocument().then(({ data }) => {
+      console.log(data);
       setDocumentations(data);
+      setLoading(false);
     });
   }, []);
 
@@ -61,40 +63,43 @@ export default function DocumentationPage() {
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
         </motion.div>
-
-        <div className="space-y-6">
-          {documentations.map((doc, index) => (
-            <motion.div
-              key={index}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-            >
-              <a href={doc.url} className="flex flex-col md:flex-row">
-                <div className="flex-grow p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-2 hover:text-emerald-600 transition-colors">
-                    {doc.title}
-                  </h2>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {doc.description}
-                  </p>
-                  <div className="flex items-center text-emerald-600 font-medium">
-                    Read more <ChevronRight className="ml-1 h-4 w-4" />
+        {loading ? (
+          <>loading..</>
+        ) : (
+          <div className="space-y-6">
+            {documentations.map((doc, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+              >
+                <a href={doc.url} className="flex flex-col md:flex-row">
+                  <div className="flex-grow p-6">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-2 hover:text-emerald-600 transition-colors">
+                      {doc.title}
+                    </h2>
+                    <p className="text-gray-600 mb-4 line-clamp-2">
+                      {doc.description}
+                    </p>
+                    <div className="flex items-center text-emerald-600 font-medium">
+                      Read more <ChevronRight className="ml-1 h-4 w-4" />
+                    </div>
                   </div>
-                </div>
-                <div className="relative w-full md:w-48 h-32 md:h-auto">
-                  <Image
-                    src={(doc.image as string) || "/placeholder.svg"}
-                    alt={doc.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </a>
-            </motion.div>
-          ))}
-        </div>
+                  <div className="relative w-full md:w-48 h-32 md:h-auto">
+                    <Image
+                      src={(doc.image as string) || "/placeholder.svg"}
+                      alt={doc.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
