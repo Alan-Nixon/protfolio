@@ -5,16 +5,16 @@ import { motion } from "framer-motion";
 import { Search, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getDocument } from "../admin/(functions)/functions";
+import { getDocumentations } from "../(utils)/functions";
 
 export default function DocumentationPage() {
   const [documentations, setDocumentations] = useState<IDocumentation[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getDocument().then(({ data }) => {
-      console.log(data);
-      setDocumentations(data);
+    getDocumentations().then((data) => {
+      console.log(data)
+      setDocumentations(data.data || []);
       setLoading(false);
     });
   }, []);

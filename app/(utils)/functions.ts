@@ -131,3 +131,13 @@ export const sendReply = async (Data: sendReplyProps) => {
         return { status: false, message: e + "" }
     }
 }
+
+export const getDocumentations = async () => {
+    try {
+        const { data } = await userAxiosInstance.get("/document");
+        return data;
+    } catch (e) {
+        console.error("Error during getUser request:", e);
+        return { status: false, message: e + "" }
+    }
+}
