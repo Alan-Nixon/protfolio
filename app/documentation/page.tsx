@@ -6,25 +6,40 @@ import { Search, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getDocumentations } from "../(utils)/functions";
+import { CircleLoader } from "../(components)/LoadingPage";
 
 export default function DocumentationPage() {
   const [documentations, setDocumentations] = useState<IDocumentation[]>([]);
+  const [filteredDocs, setFilteredDocs] = useState<IDocumentation[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getDocumentations().then((data) => {
-      console.log(data)
-      setDocumentations(data.data || []);
+    getDocumentations().then(({ data }) => {
+      setDocumentations(data || []);
+      setFilteredDocs(data || []);
       setLoading(false);
     });
   }, []);
+
+  const handleChange = (term: string) => {
+    if (!term) {
+      setFilteredDocs(documentations);
+      return;
+    }
+
+    const searchedData = documentations.filter((doc) =>
+      doc.title.toLowerCase().includes(term.toLowerCase())
+    );
+
+    setFilteredDocs(searchedData);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <div className="relative w-full h-[250px] mb-12 rounded-xl overflow-hidden">
           <Image
-            src="https://imgs.search.brave.com/ZJsFLexvJdXSOM7TVjS1r9QA7eBjARqIHnKmbvnHjps/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzUyLzYxLzk2/LzM2MF9GXzI1MjYx/OTYwM19KVmZaUnlp/bnBSR0VDWllFWG05/c3JJUHVzVDZPRTho/Ty5qcGc"
+            src="/bg-service-docs.webp"
             alt="Technical documentation and resources"
             fill
             className="object-cover"
@@ -57,6 +72,7 @@ export default function DocumentationPage() {
           <div className="relative">
             <input
               type="text"
+              onChange={(e) => handleChange(e.target.value)}
               placeholder="Search documentation..."
               className="w-full py-3 pl-12 pr-4 bg-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
@@ -64,10 +80,12 @@ export default function DocumentationPage() {
           </div>
         </motion.div>
         {loading ? (
-          <>loading..</>
+          <CircleLoader />
+        ) : filteredDocs.length === 0 ? (
+          <p className="text-center text-lg">No result found</p>
         ) : (
           <div className="space-y-6">
-            {documentations.map((doc, index) => (
+            {filteredDocs.map((doc, index) => (
               <motion.div
                 key={index}
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"

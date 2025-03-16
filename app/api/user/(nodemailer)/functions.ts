@@ -1,5 +1,7 @@
 import { IMailOptions, IMailOptionsArgs } from '@/interfaces_types/interfaces_types';
 import nodemailer from 'nodemailer'
+import fs from 'fs'
+import path from 'path';
 
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -9,16 +11,17 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-export const sendMail = (Data:IMailOptionsArgs) => {
+export const sendMail = (Data: IMailOptionsArgs) => {
+    const emailPath = path.join(__dirname, '../../../../../../public/email.html')
+    const emailTemplate = fs.readFileSync(emailPath, "utf-8");
+    const html = emailTemplate.replace("{{message}}", Data.message)
+        console.log(html)
     const mailOptions: IMailOptions = {
         from: Data.from,
         to: Data.to,
-        subject: 'Alan Nixon - From contact message protfolio',
-        html: `<h1>Name : ${Data.name}</h1>
-        <p>Email: ${Data.from}</p>
-        <p>Message: ${Data.message}</p>`,
+        subject: 'Alan Nixon - From contact message portfolio',
+        html
     };
-
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error sending email:', error);

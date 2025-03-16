@@ -33,6 +33,7 @@ export default function ProfileSection({ user }: { user: IUser }) {
                 width={250}
                 height={192}
                 className="object-cover"
+                priority
               />
             )}
           </div>

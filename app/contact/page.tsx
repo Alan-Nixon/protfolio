@@ -34,7 +34,7 @@ export default function Contact() {
     if (validationContact(formData, setError)) {
       submitContact(formData).then(() => {
         toast.success("Message sent successfully");
-        setFormData(emptyContact);
+        // setFormData(emptyContact);
       });
     }
   };

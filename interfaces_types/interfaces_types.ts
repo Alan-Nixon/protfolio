@@ -116,3 +116,11 @@ export interface sendReplyProps {
     replyTo: string,
     replyMessage: string
 }
+
+export interface ITextSection {
+    title: string;
+    description: string;
+    imageSrc: string;
+    buttonLink:string;
+    buttonText:string
+} 
