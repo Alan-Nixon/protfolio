@@ -7,6 +7,30 @@ import { useUser } from "../(utils)/customHooks";
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useUser();
+
+  const navLinks = [
+    {
+      url: "/",
+      name: "Home",
+    },
+    {
+      url: "/services",
+      name: "Services",
+    },
+    {
+      url: "/documentation",
+      name: "Documentations",
+    },
+    {
+      url: "/projects",
+      name: "Projects",
+    },
+    {
+      url: "/contact",
+      name: "Contact",
+    },
+  ];
+
   return (
     <header className="py-6 border-b border-gray-200">
       <nav className="container mx-auto px-4 flex justify-between items-center">
@@ -14,33 +38,17 @@ function NavBar() {
           {user.name}
         </Link>
         <div className="hidden md:flex space-x-4">
-          <Link href="/" className="hover:text-emerald-700 transition-colors">
-            Home
-          </Link>
-          <Link
-            href="/services"
-            className="hover:text-emerald-700 transition-colors"
-          >
-            Services
-          </Link>
-          <Link
-            href="/documentation"
-            className="hover:text-emerald-700 transition-colors"
-          >
-            Documentations
-          </Link>
-          <Link
-            href="/projects"
-            className="hover:text-emerald-700 transition-colors"
-          >
-            Projects
-          </Link>
-          <Link
-            href="/contact"
-            className="hover:text-emerald-700 transition-colors"
-          >
-            Contact
-          </Link>
+          {navLinks.map(({ url, name }, index) => {
+            return (
+              <Link
+                href={url}
+                key={index}
+                className="hover:text-emerald-700 transition-colors"
+              >
+                {name}
+              </Link>
+            );
+          })}
         </div>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -51,24 +59,17 @@ function NavBar() {
       </nav>
       {isMenuOpen && (
         <div className="md:hidden mt-4 container mx-auto px-4">
-          <Link
-            href="/"
-            className="block py-2 hover:text-emerald-700 transition-colors"
-          >
-            Home
-          </Link>
-          <Link
-            href="/projects"
-            className="block py-2 hover:text-emerald-700 transition-colors"
-          >
-            Projects
-          </Link>
-          <Link
-            href="/contact"
-            className="block py-2 hover:text-emerald-700 transition-colors"
-          >
-            Contact
-          </Link>
+          {navLinks.map(({ url, name }, index) => {
+            return (
+              <Link
+                href={url}
+                key={index}
+                className="block py-2 hover:text-emerald-700 transition-colors"
+              >
+                {name}
+              </Link>
+            );
+          })}
         </div>
       )}
     </header>

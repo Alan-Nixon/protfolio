@@ -52,7 +52,8 @@ export default function Page() {
             );
             setDomain(domain);
             const largestDownload = domain[1];
-            const zero = intervals.length + (largestDownload - 4);
+            const zero = Math.max(intervals.length + (largestDownload - 4), 0);
+            console.log(zero, intervals.length, largestDownload);
             const updatedIntervals = new Array(zero > 5 ? 5 : zero).fill(0);
             updatedIntervals[updatedIntervals.length - 1] = Math.ceil(
               largestDownload * 1
@@ -72,7 +73,7 @@ export default function Page() {
               if (index === 0) return first;
               if (index === length - 1) return last;
               return Math.round(first + index * step);
-            }); 
+            });
             setIntervals(intervalsData);
             setInitialData(downloads as typeof initialData);
           }
@@ -88,7 +89,9 @@ export default function Page() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white rounded-lg shadow-md mb-8 p-6">
-        <h1 className="text-2xl font-bold mb-4">{openSource?.title}</h1>
+        <h1 className="text-2xl font-bold mb-4 truncate w-70">
+          {openSource?.title}
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div className="space-y-2">
             <label

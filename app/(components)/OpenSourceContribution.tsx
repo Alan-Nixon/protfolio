@@ -14,6 +14,7 @@ export default function OpenSourceContribution() {
     setLoading(false);
     getOpenSource().then(({ data }) => setOpenSource(data));
   }, []);
+  
 
   return (
     <section className="py-20">

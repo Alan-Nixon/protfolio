@@ -54,7 +54,7 @@ export default function Chatbot() {
           <div className="flex justify-between items-center bg-emerald-700 text-white p-4">
             <div className="flex items-center">
               <Image
-                src="https://imgs.search.brave.com/icnnaEaG2oKU1tef6IbBnC3bDLFvRwMgZWCurV3uSk0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA1Lzg2LzEyLzE5/LzM2MF9GXzU4NjEy/MTk3Nl9nVXBEeDdi/WjBMZ3E2YkJqUTMz/ZzZDT3V1UW5xTVd6/MS5qcGc"
+                src="/chatbot.webp"
                 alt="Jarvis"
                 width={40}
                 height={40}
