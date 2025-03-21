@@ -2,8 +2,5 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://alan-nixon.vercel.app
-
 # Sitemaps
 Sitemap: https://alan-nixon.vercel.app/sitemap.xml
