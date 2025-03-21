@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 relative">
-      <h1 className="sr-only">Alan Nixon - MERN Stack Developer & Freelancer</h1>
+      {/* <h1 className="sr-only">Alan Nixon - MERN Stack Developer & Freelancer</h1> */}
       <ProfileSection user={user} />
       <Skills />
       <TextImageSection data={dataServices} />
