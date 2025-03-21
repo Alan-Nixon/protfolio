@@ -1,6 +1,6 @@
 # *
 User-agent: *
 Allow: /
-
+ 
 # Sitemaps
 Sitemap: https://alan-nixon.vercel.app/sitemap.xml
