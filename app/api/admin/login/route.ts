@@ -1,7 +1,7 @@
 // import { compare } from "bcrypt"
 // import AdminModel from '@/models/admin'
 
-export const POST = async (req: Request) => {
+export const POST = async () => {
     try {
 
         // const { Email, Password } = await req.json();
