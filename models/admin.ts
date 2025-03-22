@@ -1,12 +1,16 @@
 import { model, models } from "mongoose";
 import { Schema } from "mongoose";
 
+export interface IAdmin extends Document {
+    Email: string,
+    Password: string,
+}
 
 const adminSchema = new Schema({
-    Email: { type: String, required: true },
-    Password: { type: String, required: true }
+    Email: { type: String, required: true, default: '' },
+    Password: { type: String, required: true, default: '' }
 })
 
-const AdminModel = models.admin || model('admins', adminSchema);
+const AdminModel = models.admin || model<IAdmin>('admins', adminSchema);
 
 export default AdminModel;

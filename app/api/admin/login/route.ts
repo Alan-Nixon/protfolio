@@ -1,5 +1,6 @@
 // import { compare } from "bcrypt"
-import AdminModel from '@/models/admin'
+
+import AdminModel from "@/models/admin";
 
 export const POST = async (req: Request) => {
     try {
