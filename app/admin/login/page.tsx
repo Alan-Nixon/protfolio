@@ -45,11 +45,14 @@ export default function AdminLogin() {
       email: credentials.Email,
       password: credentials.Password,
     }).then((result) => {
+      alert("ok")
       if (!result?.ok) {
         setError("Invalid credentials");
         return;
       }
       window.location.href = "/admin/profile";
+    }).catch((error) => {
+      console.log(error)
     });
   };
 
