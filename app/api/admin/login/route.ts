@@ -1,12 +1,15 @@
 // import { compare } from "bcrypt"
 
-import AdminModel from "@/models/admin";
+import ContactModel from "@/models/contact";
+
+// import AdminModel from "@/models/admin";
 
 export const POST = async (req: Request) => {
     try {
         const body = await req.json()
-        const data = await AdminModel.findOne({ Email: body.Email });
-        console.log(data);
+        // const data = await AdminModel.findOne({ Email: body.Email });
+        const data = await ContactModel.find()
+        console.log(body,data);
         // if (!data) { return new Response("User not found", { status: 400 }) }
 
         // if (data.Email !== Email) {
