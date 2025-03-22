@@ -5,7 +5,7 @@ export const POST = async (req: Request) => {
     try {
 
         const { Email, Password } = await req.json();
-        const data = await AdminModel.findOne({ Email });
+        const [data] = await AdminModel.find({ Email:Email });
         console.log(data);
         // if (!data) { return new Response("User not found", { status: 400 }) }
 
