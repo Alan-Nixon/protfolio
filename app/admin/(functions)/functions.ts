@@ -15,7 +15,7 @@ export const adminPostLogin = async (body: ILoginCred) => {
         console.error("Error during login request:", e);
         return { status: false, message: e + "" }
     }
-};
+}; 
 
 export const getProfileDetails = async () => {
     try {
