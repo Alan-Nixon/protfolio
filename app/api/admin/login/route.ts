@@ -17,7 +17,7 @@ export const POST = async (req: Request) => {
             const res = JSON.stringify({ status: false, message: "Incorrect Password try again" })
             return new Response(res, { status: 200 });
         }
-        console.log(data)
+        console.log(data);
         const res = JSON.stringify({ status: true, message: "success", data })
         return new Response(res, { status: 200 });
     } catch (error) {
