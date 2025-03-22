@@ -7,6 +7,6 @@ const adminSchema = new Schema({
     Password: { type: String, required: true }
 })
 
-const AdminModel = models.admin || model('admin', adminSchema);
+const AdminModel = models.admin || model('admins', adminSchema);
 
 export default AdminModel;
