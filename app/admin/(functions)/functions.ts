@@ -9,13 +9,13 @@ const adminAxiosInstance = axios.create({
 
 export const adminPostLogin = async (body: ILoginCred) => {
     try {
-        const { data } = await adminAxiosInstance.get("/login?data=" + JSON.stringify(body));
+        const { data } = await adminAxiosInstance.post("/login", body);
         return data;
     } catch (e) {
         console.error("Error during login request:", e);
         return { status: false, message: e + "" }
     }
-}; 
+};
 
 export const getProfileDetails = async () => {
     try {
@@ -196,7 +196,7 @@ export const deleteOpenSource = async (openSourceId: string) => {
 
 export const addExperience = async (experience: Omit<IExperience, "_id">) => {
     try {
-        const { data } = await adminAxiosInstance.post("/experience", experience);
+        const { data } = await adminAxiosInstance.post("/experience",experience);
         return data;
     } catch (e) {
         console.error("Error during getUser request:", e);
@@ -255,7 +255,7 @@ export const deleteDocument = async (documentId: string) => {
     }
 }
 
-export const getDocument = async () => {
+export const getDocument = async() =>  {
     try {
         const { data } = await adminAxiosInstance.get("/document");
         return data;
