@@ -37,7 +37,7 @@ export const POST = async () => {
 };
 
 
-export async function GET(req: Request) {
+export async function GET() {
     try {
         // const { searchParams } = new URL(req.url);
 
