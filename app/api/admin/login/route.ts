@@ -39,12 +39,12 @@ export const POST = async () => {
 
 export async function GET(req: Request) {
     try {
-        const { searchParams } = new URL(req.url);
+        // const { searchParams } = new URL(req.url);
 
-        const { Email, Password } = JSON.parse(searchParams.get('data') || "")
-        const data = await AdminModel.findOne({ Email })
-        console.log(data, Email, Password);
-        const res = JSON.stringify({ status: true, message: "success", data })
+        // const { Email, Password } = JSON.parse(searchParams.get('data') || "")
+        // const data = await AdminModel.findOne({ Email })
+        // console.log(data, Email, Password);
+        const res = JSON.stringify({ status: true, message: "success" })
         return new Response(res, { status: 200 });
 
     } catch (error) {
