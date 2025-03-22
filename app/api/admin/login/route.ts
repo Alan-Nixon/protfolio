@@ -6,9 +6,9 @@ import AdminModel from "@/models/admin";
 
 // import AdminModel from "@/models/admin";
 
-export const POST = async (req: Request) => {
+export const POST = async () => {
     try {
-        const body = await req.json()
+        // const body = await req.json()
         // const data = await AdminModel.findOne({ Email: body.Email });
         // const data = await ContactModel.find()
         // console.log(body,data);
