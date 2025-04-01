@@ -1,6 +1,14 @@
-# *
-User-agent: *
-Allow: /
- 
-# Sitemaps
-Sitemap: https://alan-nixon.vercel.app/sitemap.xml
+# Allow all bots  
+User-agent: *  
+Allow: /  
+
+# Allow BraveBot  
+User-agent: BraveBot  
+Disallow:  
+
+# Allow MojeekBot  
+User-agent: MojeekBot  
+Disallow:  
+
+# Sitemap  
+Sitemap: https://alan-nixon.vercel.app/sitemap.xml  
