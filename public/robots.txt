@@ -10,5 +10,5 @@ Disallow:
 User-agent: MojeekBot  
 Disallow:  
 
-# Sitemap  
+
 Sitemap: https://alan-nixon.vercel.app/sitemap.xml  
